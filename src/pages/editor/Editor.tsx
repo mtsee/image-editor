@@ -21,6 +21,7 @@ import { server } from './server';
 import { tdata } from './tdata2';
 import DragItem from './common/dragitem';
 import HotKeys from './HotKeys';
+import { config } from '@config/index';
 
 interface IProps {
   match: { params: { appid: string } };
@@ -115,7 +116,8 @@ function Editor(props: IProps) {
         location.href = '/editor';
         Toast.error(err);
       } else {
-        const json = (await $.get(res.url + '?t=' + +new Date())) as any;
+        // console.log('resresres', res);
+        const json = (await $.get(editor.store.setURL(res.draft_url) + '?t=' + +new Date())) as any;
         editor.data = json;
       }
     }

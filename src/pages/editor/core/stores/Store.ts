@@ -35,6 +35,18 @@ export default class Store {
   // 控制器选中元素触发每个元素内部的函数
   public controlSelectFuns: Record<string, () => void> = {};
 
+  // 资源host
+  public resourceHost: string = '';
+
+  @bindSelf
+  public setURL(url: string) {
+    if (/(http:\/\/|https:\/\/)/.test(url)) {
+      return url;
+    } else {
+      return this.resourceHost + url;
+    }
+  }
+
   public helper = helper;
   public utils = utils;
   // 历史记录添加的回调函数

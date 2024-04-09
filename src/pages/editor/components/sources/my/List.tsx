@@ -391,7 +391,7 @@ export default function List(props: IProps) {
                       <MusicRhythm theme="filled" size="60" fill="#009006" />
                     </span>
                   ) : (
-                    <img src={config.resourcesHost + d.urls?.thumb} />
+                    <img src={editor.store.setURL(d.urls?.thumb)} />
                   )}
                   {['audio', 'video'].includes(d.type) && (
                     <i className={styles.time}>{util.secToTime(d.attrs?.duration || 0, 'mm:ss')}</i>

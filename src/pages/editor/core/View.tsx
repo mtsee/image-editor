@@ -21,6 +21,7 @@ export interface IViewProps {
   data: BasePage;
   target: HTMLElement; // canvas放入的DOM容器
   env: ENV;
+  resourceHost: string; // 资源文件前缀
   // 初始化成功
   initSuccess?: () => void;
   // 渲染后执行
@@ -36,11 +37,12 @@ export interface IViewProps {
 }
 
 export default function View(props: IViewProps) {
-  const { target, data, env } = props;
+  const { target, data, env, resourceHost } = props;
   const [loaded, setLoaded] = useState<boolean>(false);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
   const store = useMemo<Store>(() => {
     const s = new Store();
+    s.resourceHost = resourceHost;
     s.data = data;
     s.env = env;
     s.updateView = forceUpdate;

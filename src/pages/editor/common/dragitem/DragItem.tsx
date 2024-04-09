@@ -7,8 +7,8 @@ import $ from 'jquery';
 import { editor } from '@stores/editor';
 import { addItem, addTextItem, addImageItem } from '@pages/editor/components/sources/addItem';
 import { pubsub, util } from '@utils/index';
-import { ImageLayer, TextLayer } from '@pages/editor/core/types/data';
-import { Toast } from '@douyinfe/semi-ui';
+// import { ImageLayer, TextLayer } from '@pages/editor/core/types/data';
+// import { Toast } from '@douyinfe/semi-ui';
 
 export interface IProps {}
 
@@ -91,7 +91,7 @@ export default function DragItem(props: IProps) {
             }}
             className={styles.item}
           >
-            <img className={styles.thumb} src={item.urls.thumb} alt="" />
+            <img className={styles.thumb} src={editor.store.setURL(item.urls.thumb)} alt="" />
             <span className={styles.nameTime}>
               <h5 style={{ width: 100 }}>{item.name}</h5>
               {item.type === 'video' && (
@@ -138,7 +138,7 @@ export default function DragItem(props: IProps) {
           >
             {item.type === 'text' && <Text theme="outline" size="20" fill="var(--theme-icon)" />}
             {['filter', 'effect', 'transition'].includes(item.type) && (
-              <img style={{ height: 30 }} className={styles.thumb} src={item.urls.thumb} alt="" />
+              <img style={{ height: 30 }} className={styles.thumb} src={editor.store.setURL(item.urls.thumb)} alt="" />
             )}
             <span className={styles.nameTime}>
               <h5>{item.name}</h5>

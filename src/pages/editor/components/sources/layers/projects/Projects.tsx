@@ -6,6 +6,8 @@ import { More } from '@icon-park/react';
 import { IconTreeTriangleDown } from '@douyinfe/semi-icons';
 import { getInitData } from './initData';
 import { pageSize } from '@pages/editor/core/config/config';
+import { config } from '@config/index';
+import { editor } from '@stores/editor';
 
 export interface IProps {}
 
@@ -178,7 +180,7 @@ export default function Projects(props: IProps) {
                   //   width: (130 * item.width) / item.height,
                   //   height: 130,
                   // }}
-                  src={item.thumb ? item.thumb : '/assets/images/img-null.png'}
+                  src={item.thumb ? editor.store.setURL(item.thumb) : '/assets/images/img-null.png'}
                   alt=""
                 />
               </div>

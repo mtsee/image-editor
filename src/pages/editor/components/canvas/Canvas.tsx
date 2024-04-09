@@ -10,6 +10,7 @@ import { View } from '../../core';
 import { pubsub } from '@utils/pubsub';
 import SetCanvasSize from './SetCanvasSize';
 import ContextMenu from '../contextMenu';
+import { config } from '@config/index';
 export interface IProps {}
 
 function Canvas(props: IProps) {
@@ -33,6 +34,7 @@ function Canvas(props: IProps) {
       <div className={styles.canvasInner} id="h5dsCanvas">
         {target && (
           <View
+            resourceHost={config.resourcesHost}
             callback={store => {
               editor.store = store;
               editor.movieCreateSuccess = true;
