@@ -1,6 +1,6 @@
 # 简介
 
-Image Design 是一款开源的图片设计工具，使用了`React Hooks`，`Typescript`，`Vite`，`Leaferjs`等主流的技术开发，开箱即用，
+WuJie Design 是一款开源的图片设计工具，使用了`React Hooks`，`Typescript`，`Vite`，`Leaferjs`等主流的技术开发，开箱即用，
 如果想直接使用，请访问我们的在线版本<a href="https://image.h5ds.com" target="_blank">无界云图</a>。
 
 # 是否可商用？
@@ -39,6 +39,7 @@ yarn dev
 
 // 打包项目
 yarn build
+
 ```
 
 # 技术交流
