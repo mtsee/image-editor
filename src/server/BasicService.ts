@@ -2,6 +2,7 @@ import axios from 'axios';
 import { user } from '@stores/user';
 import { config } from '@config/index';
 import { server } from './abort';
+import { Toast } from '@douyinfe/semi-ui';
 
 const globalOptions = {
   headers: {
@@ -94,6 +95,7 @@ export default class BasicService {
         }
         if (res.code === 1001 || res.code === 1002) {
           console.error('登录失效，请刷新页面重新登录');
+          Toast.error(res.message);
           user.clearUserInfo();
           return [null, '登录失效'];
         }

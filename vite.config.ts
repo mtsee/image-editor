@@ -90,21 +90,16 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 3004,
     proxy: {
-      // 微信二维码扫描
-      "/cgi-bin": {
-        target: "https://video.h5ds.com",
+      '/cgi-bin': {
+        target: 'https://image.h5ds.com',
         changeOrigin: true,
       },
-      "/api": {
-        target: "https://video.h5ds.com",
+      '/api': {
+        target: 'https://image.h5ds.com',
         changeOrigin: true,
       },
-      "/fonts": {
-        target: "https://cdn.h5ds.com/assets",
-        changeOrigin: true,
-      },
-      "/video": {
-        target: "https://cdn.h5ds.com",
+      '/fonts': {
+        target: 'https://cdn.h5ds.com/assets',
         changeOrigin: true,
       },
     },

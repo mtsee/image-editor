@@ -9,11 +9,15 @@ import WaterFull from '@components/water-full';
 import { Button, Popover, Toast } from '@douyinfe/semi-ui';
 import { More } from '@icon-park/react';
 import remove from 'lodash/remove';
+import { config } from '@config/index';
 
 export interface IProps {}
 
 function Pages(props: IProps) {
   editor.selectPageId;
+  if (!editor.movieCreateSuccess) {
+    return null;
+  }
   return (
     <div className={styles.pages + ' scroll'}>
       <div className={styles.btns}>
@@ -66,7 +70,7 @@ function Pages(props: IProps) {
                     }, 10);
                   });
                 }}
-                style={{ backgroundImage: `url(${page.thumb})` }}
+                style={{ backgroundImage: `url(${editor.store.setURL(page.thumb)})` }}
                 className={classNames(styles.item, {
                   [styles.active]: editor.selectPageId === page.id,
                 })}

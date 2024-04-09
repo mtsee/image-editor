@@ -26,7 +26,7 @@ export default function ImageComp(props: LayerProps) {
       fill: {
         type: 'image',
         mode: 'clip',
-        url: layer.url,
+        url: props.store.setURL(layer.url),
         // scale: { x: 1, y: 1 },
       },
       around: 'center',
@@ -51,8 +51,9 @@ export default function ImageComp(props: LayerProps) {
 
   useEffect(() => {
     const fill = imgUI.fill as IImagePaint;
-    if (layer.url !== fill.url) {
-      fill.url = layer.url;
+    const url = props.store.setURL(layer.url);
+    if (url !== fill.url) {
+      fill.url = url;
     }
 
     const { x, y, width, height } = layer.cropSize || {
@@ -64,7 +65,7 @@ export default function ImageComp(props: LayerProps) {
     const scaleX = layer.width / width;
     const scaleY = layer.height / height;
     (imgUI.fill as IImagePaint) = {
-      url: layer.url,
+      url: url,
       type: 'image',
       mode: 'clip',
       scale: { x: scaleX, y: scaleY },
@@ -112,7 +113,7 @@ export default function ImageComp(props: LayerProps) {
       const scaleX = layer.width / width;
       const scaleY = layer.height / height;
       (imgUI.fill as IImagePaint) = {
-        url: layer.url,
+        url: props.store.setURL(layer.url),
         type: 'image',
         mode: 'clip',
         scale: { x: scaleX, y: scaleY },
