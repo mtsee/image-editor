@@ -85,6 +85,11 @@ export default function SourceList(props: IProps) {
               data-type={item.type}
               data-dragitem={props.type === 'template' ? undefined : item.id + '_' + props.type}
               className={classNames(styles.item, props.itemClassName)}
+              onClick={() => {
+                if (props.type === 'template') {
+                  props.addItem(item);
+                }
+              }}
             >
               {props.item(item)}
               {checkboxs ? (

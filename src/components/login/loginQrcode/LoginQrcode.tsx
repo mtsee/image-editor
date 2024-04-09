@@ -74,7 +74,7 @@ class LoginQrcode extends Component<IProps, IState> {
         <img
           crossOrigin="anonymous"
           style={{ width: 160 }}
-          src={url.replace(config.host, '') || 'https://cdn.h5ds.com/static/images/qrcode-loading.png'}
+          src={url.replace('https://mp.weixin.qq.com', '') || 'https://cdn.h5ds.com/static/images/qrcode-loading.png'}
           alt=""
         />
       </div>

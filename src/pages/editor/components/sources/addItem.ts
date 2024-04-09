@@ -3,12 +3,13 @@ import { editor } from '@stores/editor';
 // import { Toast } from '@douyinfe/semi-ui';
 import { ImageData, GroupData, TextData } from '../../core';
 import { ImageLayer } from '@pages/editor/core/types/data';
+import { config } from '@config/index';
 
 // 添加元素 图片，视频，音频
 export const addImageItem = async (item: any, dropPos?: { x: number; y: number }) => {
   console.log('添加元素', item);
   const img = editor.store.helper.createLayer('image') as ImageLayer;
-  img.url = item.urls.url;
+  img.url = config.resourcesHost + item.urls.url;
   // 图片最大不能超过画布大小
   const autoSize = editor.store.utils.calcSizeAndPosition(
     {
