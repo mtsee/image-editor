@@ -22,6 +22,7 @@ import { tdata } from './tdata2';
 import DragItem from './common/dragitem';
 import HotKeys from './HotKeys';
 import { config } from '@config/index';
+import { utils } from '@pages/editor/core';
 
 interface IProps {
   match: { params: { appid: string } };
@@ -117,7 +118,7 @@ function Editor(props: IProps) {
         Toast.error(err);
       } else {
         // console.log('resresres', res);
-        const json = (await $.get(editor.store.setURL(res.draft_url) + '?t=' + +new Date())) as any;
+        const json = (await $.get(utils.setURL(res.draft_url, config.resourcesHost) + '?t=' + +new Date())) as any;
         editor.data = json;
       }
     }

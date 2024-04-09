@@ -10,6 +10,14 @@ export function createID(n?: number): string {
   return nanoid(n ? n : 10);
 }
 
+export function setURL(url: string, resourceHost: string) {
+  if (/(http:\/\/|https:\/\/)/.test(url)) {
+    return url;
+  } else {
+    return resourceHost + url;
+  }
+}
+
 /**
  * 随机
  * @param randomLength

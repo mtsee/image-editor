@@ -40,11 +40,7 @@ export default class Store {
 
   @bindSelf
   public setURL(url: string) {
-    if (/(http:\/\/|https:\/\/)/.test(url)) {
-      return url;
-    } else {
-      return this.resourceHost + url;
-    }
+    return utils.setURL(url, this.resourceHost);
   }
 
   public helper = helper;
