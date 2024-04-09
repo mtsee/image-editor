@@ -1,0 +1,30 @@
+.item {
+  position: absolute;
+  z-index: 1000;
+  background-color: var(--theme-bg);
+  border-radius: 6px;
+  display: flex;
+  border: 1px solid var(--theme-text);
+  padding: 4px 10px;
+
+  .thumb {
+    height: 40px;
+  }
+  .nameTime {
+    margin-left: 10px;
+    color: var(--theme-text);
+    font-size: 12px;
+
+    p {
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+  }
+}
+:global {
+  [data-dragitem] {
+    img {
+      user-select: none;
+    }
+  }
+}

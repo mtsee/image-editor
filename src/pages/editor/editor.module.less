@@ -1,0 +1,175 @@
+@flodWidth: 16px;
+@flodRadius: 6px;
+@sideWidth: 60px;
+
+.editor {
+  user-select: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: var(--theme-bg);
+  overflow: hidden;
+
+  .layoutTop {
+    position: absolute;
+    height: 500px;
+    width: calc(100% - @sideWidth);
+    left: @sideWidth;
+  }
+  .layoutBottom {
+    position: absolute;
+    top: 500px;
+    height: calc(100% - 600px);
+    width: calc(100% - @sideWidth);
+    left: @sideWidth;
+  }
+
+  .sidebar {
+    z-index: 120;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--theme-bg);
+    // background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .sources {
+    z-index: 110;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--theme-bg2);
+    transition: transform 0.5s;
+    .flodButton {
+      right: -@flodWidth;
+      border-radius: 0px @flodRadius @flodRadius 0px;
+    }
+    .sourcesBar {
+      right: -2px;
+      z-index: 900;
+      position: absolute;
+      height: 100%;
+      width: 4px;
+      // background-color: #fff;
+      cursor: e-resize;
+    }
+  }
+
+  .center {
+    z-index: 100;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    transition: width 0.5s, left 0.5s;
+    overflow: hidden;
+    // background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    z-index: 100;
+    position: relative;
+    transition: 0.5s;
+    background-color: var(--theme-bg2);
+    z-index: 300;
+    // background-color: rgba(255, 255, 255, 0.2);
+  }
+  .canvas {
+    z-index: 200;
+    position: relative;
+    // overflow: hidden;
+    // width: 100%;
+    // position: absolute;
+    // background-color: rgba(255, 255, 255, 0.1);
+  }
+  .timeline {
+    z-index: 100;
+    position: relative;
+    background-color: var(--theme-timeline-bg);
+    .timelineBar {
+      top: -2px;
+      z-index: 900;
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      // background-color: #fff;
+      cursor: n-resize;
+    }
+  }
+
+  .options {
+    background-color: var(--theme-bg2);
+    border-top: 1px solid var(--theme-input);
+    position: absolute;
+    z-index: 100;
+    height: 100%;
+    top: 0;
+    right: 0;
+    transition: transform 0.5s;
+    .flodButton {
+      left: -@flodWidth;
+      border-radius: @flodRadius 0px 0px @flodRadius;
+    }
+    .optionsBar {
+      left: -2px;
+      z-index: 900;
+      position: absolute;
+      height: 100%;
+      width: 4px;
+      // background-color: #fff;
+      cursor: e-resize;
+    }
+  }
+
+  .flodButton {
+    position: absolute;
+    z-index: 200;
+    top: 50%;
+    margin-top: -30px;
+    width: @flodWidth;
+    height: 60px;
+    background-color: var(--theme-bg2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & > span {
+      transition: 0.3s;
+    }
+  }
+}
+
+.colorbg {
+  width: 0;
+  height: 0;
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 0;
+
+  .box1 {
+    position: absolute;
+    left: 135.56px;
+    top: 221.82px;
+    width: 702.44px;
+    height: 702.44px;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(189, 0, 255, 0.25) 0%, rgba(173, 0, 255, 0) 100%);
+  }
+  .box2 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 702.44px;
+    height: 702.44px;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(50% 50% at 50% 50%, rgba(0, 71, 255, 0.25) 0%, rgba(0, 102, 255, 0) 100%);
+  }
+}

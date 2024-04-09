@@ -1,0 +1,113 @@
+.tags {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  .save,
+  .more {
+    border-radius: 2px;
+    margin-left: 10px;
+    width: 27px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme-input);
+  }
+  .save {
+    margin-left: 0;
+    margin-right: 6px;
+  }
+}
+
+.ul {
+  width: calc(100% - 70px);
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  li {
+    display: inline-block;
+    cursor: pointer;
+    padding: 4px 10px;
+    font-size: 14px;
+    color: var(--theme-text);
+    margin-right: 5px;
+    background-color: var(--theme-input);
+    white-space: nowrap;
+    border-radius: 2px;
+    transition: 0.3s;
+    &:hover {
+      color: var(--theme-text2);
+      background-color: var(--theme-text-hover);
+    }
+  }
+  li.bg {
+    pointer-events: none;
+    padding: 0;
+    margin-right: 0;
+    position: absolute;
+    border-radius: 0;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 60px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--theme-bg2));
+  }
+}
+
+.search {
+  margin: 20px;
+  display: flex;
+
+  .filter {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+  }
+
+  :global {
+    .semi-input-wrapper-default {
+      border: 1px solid var(--theme-input-text);
+      input {
+        color: var(--theme-text);
+      }
+      input::placeholder {
+        color: var(--theme-text-default);
+      }
+    }
+    .semi-input-wrapper .semi-icon {
+      color: var(--theme-text);
+    }
+  }
+}
+
+.popoverTags {
+  width: 270px;
+  padding: 20px 10px;
+  max-height: 300px;
+  overflow: auto;
+  background-color: var(--theme-bg);
+  border-radius: 4px;
+  .ul {
+    white-space: initial;
+    width: 100%;
+  }
+  li {
+    white-space: nowrap;
+    margin: 0 8px 8px 0;
+    border-radius: 4px;
+  }
+}
+
+.source {
+  height: 100%;
+}
+
+.list {
+  height: calc(100% - 120px);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}

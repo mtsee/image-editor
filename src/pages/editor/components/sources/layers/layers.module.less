@@ -1,0 +1,91 @@
+.layers {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}
+
+.section {
+  left: 0 !important;
+  position: relative;
+  // background-color: var(--theme-bg2);
+  &.active {
+    background-color: var(--theme-input);
+  }
+  &:hover {
+    .btns {
+      display: flex;
+      width: 40px;
+      justify-content: space-between;
+    }
+  }
+}
+.li {
+  height: 40px;
+  font-size: 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+  margin-bottom: 1px;
+  cursor: pointer;
+  .btns {
+    display: none;
+  }
+}
+
+.group {
+  padding-left: 30px;
+  li {
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    .name {
+      font-size: 14px;
+      line-height: 20px;
+      margin-left: 10px;
+    }
+  }
+  .activeinner {
+    background-color: var(--theme-input);
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-left: 10px;
+  width: calc(100% - 20px);
+  // background-color: #ccc;
+  .name {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+  }
+  input {
+    position: relative;
+    top: -2px;
+    font-size: 12px;
+    padding: 0;
+    background-color: #fff;
+  }
+
+  :global {
+    .semi-input-wrapper-focus {
+      border-color: transparent;
+    }
+  }
+}
+
+.layerThumb {
+  display: inline-block;
+  width: 24px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: #fff;
+  margin-right: 5px;
+}

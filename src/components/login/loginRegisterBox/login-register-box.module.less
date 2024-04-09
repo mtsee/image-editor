@@ -1,0 +1,76 @@
+.loginRegisterBox {
+  display: flex;
+  // padding-bottom: 20px;
+
+  .loginRegisterInfo {
+    width: 406px;
+    padding: 40px 60px;
+    background: linear-gradient(315deg, #7454ff 0%, #1261ff 100%);
+    img {
+      width: 100%;
+    }
+    h1 {
+      color: #ffff;
+      font-weight: bolder;
+      margin-bottom: 40px;
+    }
+
+    & > p {
+      color: #ffff;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 100px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      :global {
+        .i-icon {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .loginRegisterForm {
+    width: 430px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .loginRegisterTabs {
+    margin: 0 50px 40px 50px;
+
+    .loginRegisterTitle {
+      font-size: 24px;
+      padding-top: 40px;
+      padding-bottom: 30px;
+    }
+  }
+
+  .loginRegisterActions {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+
+    .item {
+      margin: 0 20px;
+      color: var(--theme-color1);
+    }
+
+    .webfont {
+      font-size: 24px;
+    }
+
+    span {
+      display: block;
+      font-size: 12px;
+    }
+  }
+
+  .loginFooter {
+    padding-top: 20px;
+  }
+}

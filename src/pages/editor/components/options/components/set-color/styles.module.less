@@ -1,0 +1,239 @@
+.color {
+  display: inline-block;
+  height: 32px;
+  background-color: #ccc;
+  // min-width: 120px;
+  width: calc(50% - 3px);
+  border-radius: var(--semi-border-radius-small);
+  border: var(--theme-border);
+}
+
+.colors {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // :global {
+  //   .semi-select {
+  //     width: calc(50% - 3px);
+  //   }
+  //   .semi-input-number {
+  //     width: 85px;
+  //   }
+  // }
+  .colora {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border-radius: 1000px;
+    text-align: center;
+    border: 2px solid rgb(255, 255, 255);
+    &.active {
+      box-sizing: content-box;
+      border: 2px solid rgb(255, 255, 255);
+      text-align: center;
+      svg {
+        margin-top: 3px;
+      }
+    }
+  }
+}
+
+.modal {
+  padding: 15px 10px 20px 10px;
+  background-color: #fff;
+  border-radius: 6px;
+  .header {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & > * {
+      cursor: pointer;
+    }
+    h1 {
+      font-size: 16px;
+    }
+    .item {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-color: #ccc;
+      margin-left: 5px;
+      border-radius: 100px;
+      border: 2px solid rgb(234, 234, 234);
+      // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .active {
+      border: 2px solid #333;
+    }
+    .solid {
+      background-color: #ccc;
+    }
+    .linear {
+      background: linear-gradient(90deg, #fff 0%, #333 100%);
+    }
+    .radial {
+      background: radial-gradient(#fff 0%, #333 100%);
+    }
+    // .angular {
+    //   background: radial-gradient(#fff 0%, #333 100%);
+    // }
+  }
+
+  .gradualRotate {
+    margin: 0 10px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h2 {
+      font-size: 14px;
+      opacity: 0.6;
+    }
+  }
+
+  .inputs {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: space-between;
+    & > div {
+      border-radius: 6px;
+    }
+    input {
+      font-size: 12px;
+      text-align: center;
+    }
+    :global {
+      .semi-input-prefix-text,
+      .semi-input-suffix-text {
+        margin-right: 0px;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .tips {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    span {
+      opacity: 0.5;
+      font-size: 12px;
+    }
+    span:nth-child(1) {
+      opacity: 1;
+    }
+  }
+
+  .tools {
+    :global {
+      .semi-input {
+        padding-right: 5px;
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .gradual {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 15px;
+    height: 15px;
+    position: relative;
+    border-radius: 2px;
+
+    a {
+      display: inline-block;
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 10px;
+      transform-origin: center;
+      // transform: rotate(45deg);
+      border: 2px solid #fff;
+      margin-left: -7px;
+      margin-top: -1px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      // cursor: move;
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        border-radius: 100px;
+        background-color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+      }
+    }
+
+    .active {
+      border: 2px solid #000;
+    }
+  }
+
+  .colorbox {
+    :global {
+      .react-colorful {
+        padding: 10px;
+        width: 260px;
+        height: 280px;
+      }
+
+      .react-colorful__saturation {
+        border-radius: 10px !important;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border-bottom: none;
+      }
+
+      .react-colorful__hue {
+        margin-bottom: 15px;
+      }
+
+      .react-colorful__hue,
+      .react-colorful__alpha {
+        height: 16px;
+        border-radius: 100px;
+      }
+
+      .react-colorful__saturation-pointer,
+      .react-colorful__hue-pointer,
+      .react-colorful__alpha-pointer {
+        width: 16px;
+        height: 16px;
+        display: flex;
+        justify-content: center;
+        &::after {
+          content: '';
+          display: inline-block;
+          width: 5px;
+          height: 5px;
+          border-radius: 100px;
+          background-color: #fff;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 100;
+        }
+      }
+    }
+  }
+}
+
+.xiGuan {
+  top: 3px;
+  position: relative;
+  padding-right: 5px;
+}
