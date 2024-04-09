@@ -18,7 +18,7 @@ function CropperImage(props: IProps) {
   const elementData = editor.getElementData() as ImageLayer;
   useEffect(() => {
     if (visible) {
-      setSrc(elementData.url);
+      setSrc(editor.store.setURL(elementData.url));
       setAspectRatio(elementData.width / elementData.height);
     }
   }, [visible, elementData.url]);
