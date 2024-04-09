@@ -1,0 +1,36 @@
+.sources {
+  height: 100%;
+}
+
+.tabs {
+  height: 100%;
+  :global {
+    .semi-tabs-bar {
+      height: 61px;
+      display: flex;
+      justify-content: center;
+      border-bottom: var(--theme-border);
+    }
+    .semi-tabs-tab-line.semi-tabs-tab {
+      color: var(--theme-text-default);
+      &:hover {
+        color: var(--theme-text-default);
+      }
+    }
+    .semi-tabs-tab-line.semi-tabs-tab-active {
+      color: var(--theme-text);
+      &:hover {
+        color: var(--theme-text-default);
+      }
+    }
+    .semi-tabs-content {
+      height: calc(100% - 60px);
+    }
+    .semi-tabs-pane {
+      height: 100%;
+      & > div {
+        height: 100%;
+      }
+    }
+  }
+}

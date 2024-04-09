@@ -1,0 +1,46 @@
+.page {
+  // color: var(--semi-color-text-0);
+  height: calc(100% - 60px);
+  overflow: auto;
+}
+
+.space {
+  & > a {
+    margin-right: 20px;
+  }
+}
+
+.position {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  :global {
+    .semi-input-number {
+      width: calc(50% - 3px);
+    }
+  }
+}
+
+.moreSize {
+  margin: 10px 0;
+  span {
+    display: inline-block;
+  }
+  & > section {
+    display: flex;
+    cursor: pointer;
+    padding: 8px 4px;
+    border-radius: 4px;
+    .name {
+      margin-right: 10px;
+      font-size: 12px;
+    }
+    .size {
+      opacity: 0.5;
+      font-size: 12px;
+    }
+    &:hover {
+      background-color: var(--theme-bg2);
+    }
+  }
+}

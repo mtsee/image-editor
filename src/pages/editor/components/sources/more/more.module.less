@@ -1,0 +1,39 @@
+.moreList {
+  height: 100%;
+  overflow: auto;
+
+  .title {
+    margin: 20px;
+    font-size: 14px;
+    color: var(--theme-text);
+    font-weight: bolder;
+  }
+
+  .item {
+    height: 100%;
+    color: var(--theme-text);
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    P {
+      padding-top: 6px;
+      display: flex;
+      align-items: center;
+      & > span {
+        margin-right: 2px;
+      }
+    }
+  }
+}
+
+.waterfull {
+  background-color: transparent !important;
+}

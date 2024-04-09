@@ -1,0 +1,90 @@
+.user {
+  width: 300px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: var(--semi-border-radius-small);
+  font-size: 14px;
+  // color: var(--theme-text);
+
+  .photo {
+    display: flex;
+    align-items: center;
+    .right {
+      margin-left: 10px;
+      h3 {
+        font-weight: bolder;
+        margin-bottom: 6px;
+      }
+      p {
+        font-size: 13px;
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .vipTips {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 148, 49, 0.2);
+    padding: 10px;
+    border-radius: var(--semi-border-radius-small);
+
+    .right {
+      margin-left: 10px;
+    }
+    h3 {
+      font-weight: bolder;
+      margin-bottom: 6px;
+      color: #a1520a;
+    }
+    p {
+      span {
+        font-size: 13px;
+        opacity: 0.7;
+      }
+    }
+    a {
+      color: var(--theme-main);
+      font-weight: bolder;
+      margin-left: 5px;
+    }
+  }
+
+  .noVipTips {
+    background: rgba(0, 0, 0, 0.05);
+    h3 {
+      color: #8a8a8a;
+    }
+  }
+
+  .menus {
+    margin-top: 20px;
+    .right {
+      opacity: 0.5;
+      font-size: 12px;
+    }
+    a {
+      color: var(--text-color);
+    }
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 10px 10px;
+      border-radius: var(--semi-border-radius-small);
+      transition: 0.3s;
+      :global {
+        .i-icon {
+          opacity: 0.7;
+          margin-right: 10px;
+        }
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+}

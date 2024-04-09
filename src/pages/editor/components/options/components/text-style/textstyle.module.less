@@ -1,0 +1,118 @@
+.texts {
+  margin: 0 20px;
+  font-size: 14px;
+
+  .fontSpace {
+    display: flex;
+    justify-content: space-between;
+    :global {
+      .semi-select {
+        margin-right: 6px;
+        width: calc(100% - 91px);
+      }
+      .semi-input-number {
+        width: 85px;
+      }
+    }
+  }
+
+  .styleSpace {
+    margin: 6px 0;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      text-align: center;
+      padding: 4px 0;
+      border-radius: var(--semi-border-radius-small);
+      display: inline-block;
+      background-color: var(--semi-color-fill-0);
+      width: calc(16.6667% - 6px);
+      &:hover {
+        background-color: var(--semi-color-fill-1);
+      }
+    }
+
+    .active {
+      background-color: var(--theme-main);
+      path {
+        stroke: #fff !important;
+      }
+      &:hover {
+        background-color: var(--theme-main);
+      }
+    }
+  }
+}
+
+.textSpace {
+  display: flex;
+  justify-content: space-between;
+
+  .prefixIco {
+    display: inline-block;
+    padding: 2px 5px;
+  }
+  :global {
+    .semi-input-number {
+      width: calc(50% - 3px);
+    }
+  }
+}
+
+.gradualColors {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.gradualDirc {
+  width: calc(50% - 3px);
+  display: flex;
+  justify-content: space-between;
+  & > a {
+    width: calc(50% - 3px);
+    height: 32px;
+    border-radius: var(--semi-border-radius-small);
+    background-color: var(--semi-color-fill-0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    &:hover {
+      background-color: var(--semi-color-fill-1);
+    }
+  }
+  .active {
+    background-color: var(--theme-main);
+    &:hover {
+      background-color: var(--theme-main);
+    }
+  }
+}
+
+.borders {
+  display: flex;
+  justify-content: space-between;
+  :global {
+    .semi-input-number {
+      width: calc(50% - 3px);
+    }
+  }
+}
+
+.backgrounds {
+  display: flex;
+  align-items: center;
+  & > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--semi-color-fill-0);
+    border-radius: var(--semi-border-radius-small);
+    margin-left: 6px;
+  }
+}

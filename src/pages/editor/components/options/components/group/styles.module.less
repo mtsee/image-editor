@@ -1,0 +1,36 @@
+.align {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.spaces {
+  font-size: 14px;
+  margin: 10px 0;
+  a {
+    margin-right: 10px;
+  }
+}
+
+.position {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  :global {
+    .semi-input-number {
+      width: calc(50% - 3px);
+    }
+  }
+}
+
+.size {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  :global {
+    .semi-input-number {
+      width: calc(50% - 3px);
+    }
+  }
+}
