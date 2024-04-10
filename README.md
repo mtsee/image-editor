@@ -1,11 +1,20 @@
 # 简介
 
-WuJie Design 是一款开源的图片设计工具，使用了`React Hooks`，`Typescript`，`Vite`，`Leaferjs`等主流的技术开发，开箱即用，
-如果想直接使用，请访问我们的在线版本<a href="https://image.h5ds.com" target="_blank">无界云图</a>。
+WuJie Design 是<a href="https://www.h5ds.com" target="_blank">四川爱趣五科技</a>推出的一款开源的图片设计工具，使用
+了`React Hooks`，`Typescript`，`Vite`，`Leaferjs`等主流的技术开发，开箱即用，如果想直接使用，请访问我们的在线版
+本<a href="https://image.h5ds.com" target="_blank">无界云图</a>。
 
 # 是否可商用？
 
 项目采用 MIT 协议，可免费商用，还请保留项目中“关于我们”的相关信息，因为这是宣传我们的唯一途径。
+
+# 我们的产品矩阵
+
+- <a href="https://video.h5ds.com" target="_blank">无界云剪</a>
+- <a href="https://image.h5ds.com" target="_blank">无界云图</a>
+- <a href="https://720.h5ds.com" target="_blank">全景工具</a>
+- <a href="https://h5.h5ds.com" target="_blank">H5 网页制作工具</a>
+- <a href="https://sharezm.com" target="_blank">希尔桌面（网盘）</a>
 
 # 项目预览
 
