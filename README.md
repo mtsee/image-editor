@@ -57,6 +57,10 @@ yarn build
 - <a href="https://h5.h5ds.com" target="_blank">H5 网页制作工具</a>
 - <a href="https://sharezm.com" target="_blank">希尔桌面（网盘）</a>
 
+## 更新日志
+
+[CHANGELOG](./CHANGELOG.md)
+
 # 功能/计划
 
 Tips: 🕙 筹划中 🔲 筹备中 🚧 进行中 ✅ 已完成
