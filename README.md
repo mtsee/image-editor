@@ -8,14 +8,6 @@ WuJie Design 是<a href="https://www.h5ds.com" target="_blank">四川爱趣五�
 
 项目采用 MIT 协议，可免费商用，还请保留项目中“关于我们”的相关信息，因为这是宣传我们的唯一途径。
 
-# 我们的产品矩阵
-
-- <a href="https://video.h5ds.com" target="_blank">无界云剪</a>
-- <a href="https://image.h5ds.com" target="_blank">无界云图</a>
-- <a href="https://720.h5ds.com" target="_blank">全景工具</a>
-- <a href="https://h5.h5ds.com" target="_blank">H5 网页制作工具</a>
-- <a href="https://sharezm.com" target="_blank">希尔桌面（网盘）</a>
-
 # 项目预览
 
 - 地址：<a href="https://image.h5ds.com" target="_blank">无界云图</a>
@@ -56,6 +48,14 @@ yarn build
 微信技术交流群：
 
 <img src="https://cdn.h5ds.com/wxq.jpg" width="200"/>
+
+# 我们的产品矩阵
+
+- <a href="https://video.h5ds.com" target="_blank">无界云剪</a>
+- <a href="https://image.h5ds.com" target="_blank">无界云图</a>
+- <a href="https://720.h5ds.com" target="_blank">全景工具</a>
+- <a href="https://h5.h5ds.com" target="_blank">H5 网页制作工具</a>
+- <a href="https://sharezm.com" target="_blank">希尔桌面（网盘）</a>
 
 # 功能/计划
 
