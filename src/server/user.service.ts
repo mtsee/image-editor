@@ -42,6 +42,11 @@ class UserService extends BasicService {
     return await this.post(`/api/v1/account/sms/register`, data);
   };
 
+  // 获取登录手机验证码
+  getLoginSMS = async (data: any) => {
+    return await this.post(`/account/sms/login`, data);
+  };
+
   // 验证码
   getCaptcha = async () => {
     return await this.get(`/api/v1/account/captcha`);

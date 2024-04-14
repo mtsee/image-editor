@@ -42,7 +42,7 @@ function TextOptions(props: IProps) {
           <Rotation />
         </div>
       </TabPane>
-      <TabPane tab="混合模式" itemKey="animation">
+      <TabPane tab="混合模式" itemKey="colour">
         <Filter />
       </TabPane>
     </Tabs>

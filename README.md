@@ -1,6 +1,6 @@
 # 简介
 
-WuJie Design 是<a href="https://www.h5ds.com" target="_blank">四川爱趣五科技</a>推出的一款开源的图片设计工具，使用
+无界云图是<a href="https://www.h5ds.com" target="_blank">四川爱趣五科技</a>推出的一款开源的图片设计工具，使用
 了`React Hooks`，`Typescript`，`Vite`，`Leaferjs`等主流的技术开发，开箱即用，如果想直接使用，请访问我们的在线版
 本<a href="https://image.h5ds.com" target="_blank">无界云图</a>。
 
@@ -20,13 +20,15 @@ WuJie Design 是<a href="https://www.h5ds.com" target="_blank">四川爱趣五�
 
 ![image](https://cdn.h5ds.com/doc/hdesign-2.png)
 
-# 相关技术文档
+# 相关文档
 
-- <a href="https://www.leaferjs.com" target="_blank">Leaferjs</a>
-- <a href="https://devblogs.microsoft.com/typescript/" target="_blank">TypeScript</a>
-- <a href="https://react.dev/" target="_blank">React</a>
-- <a href="https://cn.mobx.js.org/" target="_blank">Mobx</a>
-- <a href="https://semi.design/zh-CN/" target="_blank">Semi Design</a>
+- 技术文档：<a href="./doc/技术文档.md" target="_blank">技术文档</a>
+- 插件开发文档：<a href="./doc/插件开发文档.md" target="_blank">插件开发文档</a>
+- Leaferjs: <a href="https://www.leaferjs.com" target="_blank">Leaferjs</a>
+- TypeScript: <a href="https://devblogs.microsoft.com/typescript/" target="_blank">TypeScript</a>
+- React: <a href="https://react.dev/" target="_blank">React</a>
+- Mobx: <a href="https://cn.mobx.js.org/" target="_blank">Mobx</a>
+- Semi Design: <a href="https://semi.design/zh-CN/" target="_blank">Semi Design</a>
 
 # 安装使用
 

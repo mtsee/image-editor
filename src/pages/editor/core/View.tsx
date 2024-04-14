@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo, useReducer } from 'react';
-import { BaseLayer, BasePage, ENV } from './types/data';
+import { BaseLayer, BasePage, ENV, ExLayer } from './types/data';
 import { App, Box, Leafer, Rect, DragEvent, PointerEvent } from 'leafer-ui';
 import FrameComp from './Frame';
 import debounce from 'lodash/debounce';
@@ -17,11 +17,14 @@ import { ScrollBar } from '@leafer-in/scroll';
 import { utils } from './tools';
 import EditorLine from './leafer-extends/EditorLine';
 
+// console.log('exLayers', exLayers);
+
 export interface IViewProps {
   data: BasePage;
   target: HTMLElement; // canvas放入的DOM容器
   env: ENV;
   resourceHost: string; // 资源文件前缀
+  exLayers?: ExLayer[];
   // 初始化成功
   initSuccess?: () => void;
   // 渲染后执行
@@ -33,11 +36,11 @@ export interface IViewProps {
   onControlRotate?: (e: EditorEvent) => void;
   onDragUp?: (e: EditorEvent) => void;
   onContextMenu?: (e: EditorEvent, layers: BaseLayer[]) => void;
-  addRecordCallback?: () => void; // 天加记录的回调
+  addRecordCallback?: () => void; // 添加记录的回调
 }
 
 export default function View(props: IViewProps) {
-  const { target, data, env, resourceHost } = props;
+  const { target, data, env, resourceHost, exLayers = [] } = props;
   const [loaded, setLoaded] = useState<boolean>(false);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
   const store = useMemo<Store>(() => {
@@ -228,7 +231,7 @@ export default function View(props: IViewProps) {
         }
       });
 
-      new ScrollBar(app);
+      new ScrollBar(app as any);
       // new EditorLine(app);
 
       // 标尺
@@ -279,7 +282,7 @@ export default function View(props: IViewProps) {
   if (!loaded) {
     return;
   }
-  console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX更新', data.layers);
+  console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX更新', data.layers, exLayers);
 
   return (
     <>
@@ -325,6 +328,24 @@ export default function View(props: IViewProps) {
                   env={env}
                 />
               );
+            default: {
+              const exLayer = exLayers.find(d => d.config.pid === layer.type);
+              if (exLayer) {
+                const ELayer = exLayer.Layer as any;
+                return (
+                  <ELayer
+                    key={layer.id}
+                    hide={layer._hide}
+                    lock={layer._lock}
+                    dirty={layer._dirty}
+                    zIndex={99999 - i}
+                    layer={layer}
+                    store={store}
+                    env={env}
+                  />
+                );
+              }
+            }
           }
           return null;
         })}

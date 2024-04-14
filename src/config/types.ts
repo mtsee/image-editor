@@ -18,4 +18,4 @@ export type SourceType =
   | string;
 
 // 设置面板类型
-export type ElementOptionType = 'basic' | 'audio' | 'speed' | 'animation' | 'colour' | 'caption' | 'mask';
+export type ElementOptionType = 'basic' | 'animation' | 'colour' | 'caption' | 'mask';

@@ -5,6 +5,7 @@ import { DanMuIcon } from './icon';
 import { addItem } from '../addItem';
 import { editor } from '@stores/editor';
 import { Toast } from '@douyinfe/semi-ui';
+import exLayers from '@plugins/index';
 
 export interface IProps {
   show: boolean;
@@ -20,9 +21,18 @@ export default function More(props: IProps) {
     }
   }
 
-  const addPlus = d => {
-    console.log('添加插件', d);
-    Toast.warning('作者还没时间搞，等你贡献代码');
+  const addPlus = a => {
+    console.log('添加插件', a);
+    const exLayer = exLayers.find(d => d.config.pid === a.id);
+    if (exLayer) {
+      const ndata = new exLayer.LayerData();
+      console.log(ndata);
+      editor.pageData.layers.unshift(ndata);
+      editor.updateCanvas();
+      editor.store.emitControl([ndata.id]);
+    } else {
+      Toast.warning('作者还没时间搞，等你贡献代码');
+    }
     // switch (d.id) {
     //   case 'chart':
     //     addItem({ type: 'echart' });
@@ -60,12 +70,12 @@ export default function More(props: IProps) {
           }}
           list={[
             {
-              id: 'ewm',
+              id: 'qrcode',
               name: '二维码',
               icon: <PayCodeOne theme="filled" size="25" fill="var(--theme-icon)" />,
             },
             {
-              id: 'txm',
+              id: 'barcode',
               name: '条形码',
               icon: <BarCode theme="filled" size="25" fill="var(--theme-icon)" />,
             },

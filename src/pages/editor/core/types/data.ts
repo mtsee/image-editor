@@ -21,6 +21,20 @@ export interface ViewData {
   pages: BasePage[]; // 支持多页面
 }
 
+export interface ExLayerConfig {
+  pid: string; // 插件ID
+  version: string; // 版本号
+}
+
+// export { Layer, LayerData, Options, config };
+// export type { types };
+export interface ExLayer {
+  Layer: JSX.Element;
+  Options: JSX.Element;
+  LayerData: BaseLayer;
+  config: ExLayerConfig;
+}
+
 /**
  * 单张图数据
  */
@@ -35,7 +49,7 @@ export interface BasePage {
   layers: BaseLayer[]; // 元素
 }
 
-export type LayerType = 'image' | 'text' | 'shape' | 'group';
+export type LayerType = 'image' | 'text' | 'shape' | 'group' | string; // 其他
 
 /**
  * 图层

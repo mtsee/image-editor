@@ -9,6 +9,7 @@ function LoginMobile({ setShow }: any) {
     code: '',
   });
   const formRef = useRef<any>();
+  const formApiRef = useRef<any>();
   const timer = useRef<any>();
   const [time, setTime] = useState(60);
 
@@ -16,10 +17,9 @@ function LoginMobile({ setShow }: any) {
     // 1、登录成功后自动设置x-token
     // const res = await userService.login({ ...values, captchaKey: captcha.key });
     const [res, err] = await userService.login({
-      account: values.username,
-      password: values.password,
-      captchaCode: values.captchaCode,
-      captchaKey: captcha.key,
+      mobile: values.telphone,
+      code: values.phoneCode,
+      type: 'mobile_code',
     });
 
     if (res) {
@@ -54,20 +54,25 @@ function LoginMobile({ setShow }: any) {
     }
   };
 
+  const getFormApi = formApi => {
+    formApiRef.current = formApi;
+  };
+
   // 发送手机验证码
   const sendSMS = async () => {
-    const { telphone, captchaCode } = formRef.current.formApi.getValues();
-    console.log('formRef.current', formRef.current.formApi.getValues());
+    console.log('formApiRef.current', formApiRef.current);
+    const { telphone, captchaCode } = formApiRef.current.getValues();
+    console.log('formApiRef.current', formApiRef.current.getValues());
     if (!/^1\d{10}$/.test(telphone)) {
       Toast.error('请输入正确的手机号');
       return;
     }
     if (!captchaCode) {
-      Toast.error('请输入图形验证码');
+      Toast.error({ content: '请输入图形验证码', duration: 10000 });
       return;
     }
     // 发送验证码
-    const [res, err] = await userService.getRegisterSMS({
+    const [res, err] = await userService.getLoginSMS({
       mobile: telphone,
       captchaCode: captchaCode,
       captchaKey: captcha.key,
@@ -104,7 +109,7 @@ function LoginMobile({ setShow }: any) {
       <p className={styles.title}>
         <span className={styles.text}>手机登录</span>
       </p>
-      <Form name="basic" ref={formRef} onSubmit={onFinish}>
+      <Form name="basic" ref={formRef} getFormApi={getFormApi} onSubmit={onFinish}>
         <Row gutter={8} className={styles.fromItem}>
           <Col span={24}>
             <Form.Input
@@ -116,7 +121,26 @@ function LoginMobile({ setShow }: any) {
           </Col>
         </Row>
         <Row gutter={8} className={styles.fromItem}>
-          <Col span={14}>
+          <Col span={16}>
+            <Form.Input
+              noLabel
+              field="captchaCode"
+              rules={[{ required: true, message: '请输入图形验证码' }]}
+              placeholder="请输入图形验证码"
+            />
+            {/* <Input  name="captchaCode" placeholder="请输入图形验证码" className={styles.codeNum}/> */}
+          </Col>
+          <Col span={8}>
+            <img
+              onClick={getImageKey}
+              style={{ width: '100%', height: 32, display: 'flex', alignItems: 'center' }}
+              src={captcha.code}
+              alt=""
+            />
+          </Col>
+        </Row>
+        <Row gutter={8} className={styles.fromItem}>
+          <Col span={16}>
             <Form.Input
               noLabel
               field="phoneCode"
@@ -124,7 +148,7 @@ function LoginMobile({ setShow }: any) {
               placeholder="手机验证码"
             />
           </Col>
-          <Col span={10}>
+          <Col span={8}>
             <Button style={{ height: 35 }} block={true} onClick={sendSMS} disabled={time !== 60}>
               {time === 60 ? '发送验证码' : `${time}秒后重试`}
             </Button>

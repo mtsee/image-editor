@@ -1,27 +1,14 @@
-import styles from './styles.module.less';
 import { editor } from '@stores/editor';
-import { Tabs, TabPane } from '@douyinfe/semi-ui';
-import {
-  GroupAlign,
-  Align,
-  Opacity,
-  Rotation,
-  Size,
-  Position,
-  Filter,
-  AiImg,
-  FlipXY,
-  Shadow,
-  Blur,
-  Radius,
-  Border,
-} from '../components';
 import { observer } from 'mobx-react';
+import { Align, Opacity, Rotation, Size, Position, Filter, FlipXY, Shadow, Blur, Radius, Border } from '@options/index';
+import { Tabs, TabPane } from '@douyinfe/semi-ui';
+import QrOption from './QrOption';
 
 export interface IProps {
   element: any;
 }
-function GroupLayerOptions(props: IProps) {
+
+function Options(props: IProps) {
   return (
     <Tabs
       className="optionTabs"
@@ -33,8 +20,11 @@ function GroupLayerOptions(props: IProps) {
       <TabPane tab="元素设置" itemKey="basic">
         <div className={'scroll scrollBox'}>
           <FlipXY />
+          <QrOption />
           <Opacity />
-          {/* <Blur /> */}
+          <Shadow />
+          <Border />
+          <Radius />
           <Position />
           <Size />
           <Rotation />
@@ -47,4 +37,4 @@ function GroupLayerOptions(props: IProps) {
   );
 }
 
-export default observer(GroupLayerOptions);
+export default observer(Options);

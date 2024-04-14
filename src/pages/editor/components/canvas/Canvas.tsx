@@ -11,6 +11,10 @@ import { pubsub } from '@utils/pubsub';
 import SetCanvasSize from './SetCanvasSize';
 import ContextMenu from '../contextMenu';
 import { config } from '@config/index';
+
+// 外部插件扩展
+import exLayers from '@plugins/index';
+
 export interface IProps {}
 
 function Canvas(props: IProps) {
@@ -39,6 +43,7 @@ function Canvas(props: IProps) {
               editor.store = store;
               editor.movieCreateSuccess = true;
             }}
+            exLayers={exLayers as any}
             env="editor"
             data={editor.pageData}
             target={target}

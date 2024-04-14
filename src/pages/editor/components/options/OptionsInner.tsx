@@ -7,6 +7,9 @@ import GroupLayerOptions from './elements/GroupLayerOptions';
 import { editor } from '@stores/editor';
 import { Empty } from '@douyinfe/semi-ui';
 import { IllustrationNoResult, IllustrationNoResultDark } from '@douyinfe/semi-illustrations';
+import exLayers from '@plugins/index';
+
+// console.log('exLayers', exLayers);
 
 export interface IProps {
   elements: any[];
@@ -28,6 +31,10 @@ function OptionsInner(props: IProps) {
       case 'group':
         return <GroupLayerOptions key={elementData.id} element={elementData} />;
       default:
+        const exLayer = exLayers.find(d => d.config.pid === elementData.type);
+        if (exLayer) {
+          return <exLayer.Options key={elementData.id} element={elementData} />;
+        }
         return <div>未知类型</div>;
     }
   } else if (elements.length > 1) {

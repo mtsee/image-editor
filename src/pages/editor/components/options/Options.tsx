@@ -3,9 +3,9 @@ import styles from './options.module.less';
 import { observer } from 'mobx-react';
 import OptionsInner from './OptionsInner';
 import { editor } from '@stores/editor';
-import { Empty } from '@douyinfe/semi-ui';
+// import { Empty } from '@douyinfe/semi-ui';
 import { Background } from './components';
-import { IllustrationNoContent, IllustrationNoContentDark } from '@douyinfe/semi-illustrations';
+// import { IllustrationNoContent, IllustrationNoContentDark } from '@douyinfe/semi-illustrations';
 import PageOption from './PageOption';
 
 export interface IProps {}

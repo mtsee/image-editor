@@ -6,6 +6,14 @@ import remove from 'lodash/remove';
 import * as utils from '../tools/utils';
 import * as helper from '../tools/helper';
 
+interface RecordParams {
+  add: (item: RecordItem<RecordType>) => void;
+  debounceAdd: (item: RecordItem<RecordType>) => void;
+  redo: () => boolean;
+  undo: () => boolean;
+  manager: any;
+}
+
 /**
  * 封装的内核自带了一些方法，以及缓存了数据
  */
@@ -13,13 +21,7 @@ export default class Store {
   // 页面数据
   public data!: BasePage;
   // 历史记录
-  public record?: {
-    add: (item: RecordItem<RecordType>) => void;
-    debounceAdd: (item: RecordItem<RecordType>) => void;
-    redo: () => boolean;
-    undo: () => boolean;
-    manager: any;
-  };
+  public record?: RecordParams;
   // 实例
   public app!: ILeafer;
   // 控制器实例
@@ -39,7 +41,7 @@ export default class Store {
   public resourceHost: string = '';
 
   @bindSelf
-  public setURL(url: string) {
+  public setURL(url: string): string {
     return utils.setURL(url, this.resourceHost);
   }
 
@@ -225,7 +227,7 @@ export default class Store {
   }
 
   @bindSelf
-  public setViewSize(scale) {
+  public setViewSize(scale: number) {
     this.app.scale = scale;
     const padding = 0;
     const target = this.app.view as HTMLDivElement;
@@ -273,5 +275,7 @@ export default class Store {
   public destroy() {
     this.controlScaleFuns = {};
     this.data = null;
+    // this.app.destroy();
+    // this.app = null;
   }
 }

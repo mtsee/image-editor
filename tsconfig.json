@@ -28,6 +28,9 @@
       "@stores/*": ["src/stores/*"],
       "@utils/*": ["src/utils/*"],
       "@config/*": ["src/config/*"],
+      "@core/*": ["src/pages/editor/core/*"],
+      "@options/*": ["src/pages/editor/components/options/components/*"],
+      "@plugins/*": ["src/pages/editor/plugins/*"],
       "@images/*": ["src/assets/images/*"]
     }
   },
