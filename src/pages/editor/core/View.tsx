@@ -16,6 +16,7 @@ import { editor } from '@stores/editor';
 import { ScrollBar } from '@leafer-in/scroll';
 import { utils } from './tools';
 import EditorLine from './leafer-extends/EditorLine';
+import rotateIco from './rotate.png';
 
 // console.log('exLayers', exLayers);
 
@@ -67,15 +68,22 @@ export default function View(props: IViewProps) {
         skewable: false,
         hover: false,
         middlePoint: { cornerRadius: 100, width: 20, height: 6 },
-        rotatePoint: { width: 16, height: 16 },
+        rotatePoint: {
+          width: 20,
+          height: 20,
+          fill: {
+            type: 'image',
+            url: rotateIco,
+          },
+        },
       },
-      tree: {
-        usePartRender: true,
-      },
-      sky: {
-        type: 'draw',
-        usePartRender: true,
-      },
+      // tree: {
+      //   usePartRender: true,
+      // },
+      // sky: {
+      //   type: 'draw',
+      //   usePartRender: true,
+      // },
     });
     // console.log('app', app);
     //@ts-ignore
@@ -84,42 +92,6 @@ export default function View(props: IViewProps) {
     setLoaded(true);
 
     if (props.env === 'editor') {
-      // 编辑器事件
-      app.editor.on(EditorEvent.SELECT, (e: EditorEvent) => {
-        console.log('select-->');
-        const ids: string[] = [];
-        if (e.value) {
-          if (e.value instanceof Array) {
-            e.value.forEach(v => {
-              ids.push(v.id);
-            });
-          } else {
-            ids.push(e.value.id);
-          }
-        }
-        const layers = store.getLayerByIds(ids);
-        if (layers.length > 1) {
-          app.editor.config.lockRatio = true;
-        } else {
-          if (layers[0]?.type === 'text' || layers[0]?.type === 'group') {
-            app.editor.config.lockRatio = true;
-          } else {
-            app.editor.config.lockRatio = false;
-          }
-        }
-
-        ids.forEach(id => {
-          const func = store.controlSelectFuns[id];
-          if (func) {
-            func();
-          }
-        });
-
-        if (props.onControlSelect) {
-          props.onControlSelect(e, ids);
-        }
-      });
-
       app.editor.on(EditorRotateEvent.ROTATE, (e: EditorEvent) => {
         // console.log('rotate', e);
         const list = (e as any).current.leafList.list;
@@ -209,6 +181,41 @@ export default function View(props: IViewProps) {
         const layers = store.getLayerByIds(list.map(d => d.id));
         if (props.onContextMenu) {
           props.onContextMenu(e, layers);
+        }
+      });
+
+      // 编辑器事件
+      app.editor.on(EditorMoveEvent.SELECT, (e: EditorEvent) => {
+        const ids: string[] = [];
+        if (e.value) {
+          if (e.value instanceof Array) {
+            e.value.forEach(v => {
+              ids.push(v.id);
+            });
+          } else {
+            ids.push(e.value.id);
+          }
+        }
+        const layers = store.getLayerByIds(ids);
+        if (layers.length > 1) {
+          app.editor.config.lockRatio = true;
+        } else {
+          if (layers[0]?.type === 'text' || layers[0]?.type === 'group') {
+            app.editor.config.lockRatio = true;
+          } else {
+            app.editor.config.lockRatio = 'corner';
+          }
+        }
+
+        ids.forEach(id => {
+          const func = store.controlSelectFuns[id];
+          if (func) {
+            func();
+          }
+        });
+
+        if (props.onControlSelect) {
+          props.onControlSelect(e, ids);
         }
       });
 
