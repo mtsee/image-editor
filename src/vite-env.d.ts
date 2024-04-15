@@ -10,7 +10,6 @@ interface ImportMeta {
 }
 
 declare module 'PubSub';
-declare module 'fflate';
 declare module 'react-moveable';
 declare module 'undo-redo-manager2';
 declare module 'simple-query-string';

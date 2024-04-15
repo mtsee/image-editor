@@ -62,9 +62,10 @@ export default function View(props: IViewProps) {
     const app = new App({
       view: target,
       editor: {
-        lockRatio: true,
-        // point: { cornerRadius: 0 },
+        lockRatio: 'corner',
         stroke: '#3f99f7',
+        skewable: false,
+        hover: false,
         middlePoint: { cornerRadius: 100, width: 20, height: 6 },
         rotatePoint: { width: 16, height: 16 },
       },
@@ -273,16 +274,9 @@ export default function View(props: IViewProps) {
       store.data = data;
     }
   }, [data]);
-
-  // useEffect(() => {
-  //   store.app.x = pos.x;
-  //   store.app.y = pos.y;
-  // }, [pos.x, pos.y]);
-
   if (!loaded) {
     return;
   }
-  console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX更新', data.layers, exLayers);
 
   return (
     <>
