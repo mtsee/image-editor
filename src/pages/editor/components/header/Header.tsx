@@ -1,17 +1,7 @@
 import styles from './header.module.less';
 import { Popover, Button, Avatar, Toast, Tooltip } from '@douyinfe/semi-ui';
 import { observer } from 'mobx-react';
-import {
-  LinkCloudSucess,
-  VipOne,
-  LoadingFour,
-  ViewList,
-  Return,
-  SendOne,
-  FolderCodeOne,
-  Layers,
-  Github,
-} from '@icon-park/react';
+import { LinkCloudSucess, LoadingFour, ViewList, Return, FolderCodeOne, Layers, Github, Info } from '@icon-park/react';
 import { editor } from '@stores/editor';
 import Export from './Export';
 import User from './User';
@@ -26,6 +16,7 @@ import { server } from '../../server';
 import RecordTest from './RecordTest';
 import { config } from '@config/index';
 import { ViewData } from '@pages/editor/core/types/data';
+import AboutUs from './AboutUs';
 
 export interface IProps {}
 
@@ -200,6 +191,7 @@ function Header(props: IProps) {
         </section>
         {/* <section className={styles.center}></section> */}
         <section className={styles.right}>
+          <AboutUs />
           <a href="https://github.com/mtsee/image-editor" target="_blank" className={styles.git}>
             <Github theme="outline" size="22" fill="var(--theme-icon)" /> &nbsp; Github
           </a>

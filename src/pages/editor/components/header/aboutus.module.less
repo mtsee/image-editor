@@ -1,0 +1,129 @@
+.us {
+  display: flex;
+  align-items: center;
+  color: var(--theme-text);
+  margin-right: 20px;
+  font-size: 12px;
+  svg {
+    margin-right: 5px;
+  }
+}
+
+.info {
+  font-size: 14px;
+  padding-bottom: 40px;
+  h2 {
+    margin-top: 40px;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bolder;
+  }
+  p {
+    a {
+      color: var(--theme-text);
+      text-decoration: underline;
+    }
+    margin: 10px 0;
+    font-size: 15px;
+    line-height: 30px;
+  }
+  .items {
+    margin-top: 20px;
+    li {
+      display: inline-block;
+      vertical-align: top;
+      width: 180px;
+      margin: 0 10px 10px 0;
+      background-color: var(--theme-bg2);
+      transition: 0.4s;
+      font-size: 12px;
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      // box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+      h3 {
+        font-weight: bolder;
+        margin: 10px 0;
+      }
+      i {
+        display: inline-block;
+        position: relative;
+        left: -15px;
+        svg {
+          position: relative;
+          z-index: 10;
+        }
+        em {
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          left: 15px;
+          top: 10px;
+          border-radius: 10px;
+        }
+        .clip {
+          background-image: linear-gradient(rgba(25, 0, 255, 0.2), rgba(1, 255, 238, 0.2));
+        }
+        .img {
+          background-image: linear-gradient(rgba(148, 0, 212, 0.2), rgba(255, 57, 57, 0.2));
+        }
+        .h5 {
+          background-image: linear-gradient(rgba(255, 0, 0, 0.2), rgba(255, 200, 0, 0.2));
+        }
+        .vr {
+          background-image: linear-gradient(rgba(255, 0, 217, 0.2), rgba(255, 182, 57, 0.2));
+        }
+        .cloud {
+          background-image: linear-gradient(rgba(0, 134, 72, 0.2), rgba(212, 255, 0, 0.2));
+        }
+      }
+      .desc {
+        display: block;
+        width: 90%;
+        height: 50px;
+        overflow: hidden;
+        opacity: 0.7;
+      }
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        font-size: 12px;
+        color: var(--theme-text);
+      }
+      .more {
+        text-decoration: underline;
+      }
+      &:hover {
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .footer {
+    margin-top: 20px;
+    text-align: center;
+  }
+}
+
+.wechat {
+  margin-left: 20px;
+  width: 200px;
+  height: 281px;
+  vertical-align: top;
+  display: inline-block;
+  background-color: #fff;
+  text-align: center;
+  color: #000;
+  i {
+    display: block;
+    margin-top: 18px;
+  }
+  h5 {
+    font-size: 12px;
+    transform: scale(0.7);
+    padding-top: 0px;
+    padding-bottom: 10px;
+  }
+}

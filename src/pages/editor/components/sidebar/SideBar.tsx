@@ -19,7 +19,6 @@ import { editor } from '@stores/editor';
 import KeyboardModal from './KeyboardModal';
 // import { Button } from '@douyinfe/semi-ui';
 import { theme } from '@theme';
-import AboutUs from './AboutUs';
 
 export interface ISideBarProps {}
 
@@ -78,7 +77,6 @@ function SideBar(props: ISideBarProps) {
         </ul>
       </div>
       <div className={styles.bottom}>
-        <AboutUs />
         <KeyboardModal />
       </div>
     </div>
