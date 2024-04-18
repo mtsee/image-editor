@@ -64,6 +64,10 @@ yarn build
 
 [CHANGELOG](./CHANGELOG.md)
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=mtsee/image-editor&type=Date)](https://star-history.com/#mtsee/image-editor&Date)
+
 # 功能/计划
 
 Tips: 🕙 筹划中 🔲 筹备中 🚧 进行中 ✅ 已完成
