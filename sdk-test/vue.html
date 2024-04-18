@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue中使用</title>
+    <script src="../dist/coresdk.umd.js"></script>
+    <script src="./data.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+      }
+    </script>
+    <style>
+      body {
+        margin: 0;
+      }
+      #app {
+        background-color: #ccc;
+        height: 100vh;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script type="module">
+    import { createApp, ref } from 'vue';
+    const MyComponent = {
+      async mounted() {
+        const core = new CoreSDK({
+          data: pageData,
+          target: document.getElementById('view'),
+          env: 'editor',
+          resourceHost: 'https://cdn.h5ds.com',
+        });
+        const store = await core.init();
+      },
+      template: `<div id="view">loading...</div>`,
+    };
+
+    createApp(MyComponent).mount('#app');
+  </script>
+</html>

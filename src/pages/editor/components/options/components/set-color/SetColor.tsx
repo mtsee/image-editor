@@ -1,5 +1,5 @@
 import styles from './styles.module.less';
-import { Popover, Input, Slider, InputNumber } from '@douyinfe/semi-ui';
+import { Popover, Input, Slider, InputNumber, Toast } from '@douyinfe/semi-ui';
 import type { IPaint } from '@leafer-ui/interface';
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import classNames from 'classnames';
@@ -396,7 +396,25 @@ function ColorModal(props: IPropsColorModal) {
           <Input
             prefix="#"
             suffix={
-              <a className={styles.xiGuan}>
+              <a
+                onClick={() => {
+                  if (!(window as any).EyeDropper) {
+                    Toast.error('浏览器不支持');
+                    return;
+                  }
+                  // 创建取色器
+                  const drop = new (window as any).EyeDropper();
+                  // 进行取色
+                  drop.open().then(res => {
+                    // 获取取色结果
+                    const color = res.sRGBHex;
+                    const v = tinycolor(color).toRgb();
+                    setVal(v);
+                    resetColorByVal(v);
+                  });
+                }}
+                className={styles.xiGuan}
+              >
                 <icons.XiGuan size={14} color="#333" />
               </a>
             }

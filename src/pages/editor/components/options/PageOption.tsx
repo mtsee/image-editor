@@ -3,7 +3,7 @@ import React, { useReducer } from 'react';
 import Item from './components/item';
 import { observer } from 'mobx-react';
 import { DeleteOne, Copy } from '@icon-park/react';
-import { Tooltip, Input, InputNumber, Toast } from '@douyinfe/semi-ui';
+import { Tooltip, Input, InputNumber, Toast, Modal } from '@douyinfe/semi-ui';
 import { editor } from '@stores/editor';
 import SetColor from './components/set-color';
 import { pageSize } from '@pages/editor/core/config/config';
@@ -112,11 +112,17 @@ function PageOption(props: IProps) {
               <section
                 key={d.name}
                 onClick={() => {
-                  pageData.height = d.height;
-                  pageData.width = d.width;
-                  forceUpdate();
-                  editor.store.autoViewSize();
-                  editor.updateCanvas();
+                  Modal.confirm({
+                    title: '是否要修改画布尺寸？',
+                    content: '修改后元素会重新计算坐标',
+                    onOk: () => {
+                      pageData.height = d.height;
+                      pageData.width = d.width;
+                      forceUpdate();
+                      editor.store.autoViewSize();
+                      editor.updateCanvas();
+                    },
+                  });
                 }}
               >
                 {/* <span className={styles.name}>{d.icon}</span> */}

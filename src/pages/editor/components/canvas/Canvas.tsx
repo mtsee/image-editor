@@ -40,6 +40,12 @@ function Canvas(props: IProps) {
           <View
             resourceHost={config.resourcesHost}
             callback={store => {
+              // 修改ruler主题
+              editor.ruler = store.ruler;
+              if (editor.themeUpdateKey === 'dark') {
+                editor.ruler.changeTheme('dark2');
+              }
+
               editor.store = store;
               editor.movieCreateSuccess = true;
             }}

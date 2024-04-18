@@ -12,7 +12,6 @@ import GroupLayer from './layers/Group';
 import { Ruler } from 'leafer-x-ruler';
 import { EditorEvent, EditorMoveEvent, EditorScaleEvent, EditorRotateEvent } from '@leafer-in/editor';
 // import { ILeafer } from '@leafer-ui/interface';
-import { editor } from '@stores/editor';
 import { ScrollBar } from '@leafer-in/scroll';
 import { utils } from './tools';
 import EditorLine from './leafer-extends/EditorLine';
@@ -25,9 +24,7 @@ export interface IViewProps {
   target: HTMLElement; // canvas放入的DOM容器
   env: ENV;
   resourceHost: string; // 资源文件前缀
-  exLayers?: ExLayer[];
-  // 初始化成功
-  initSuccess?: () => void;
+  exLayers?: ExLayer[]; // 扩展组件
   // 渲染后执行
   callback?: (store: Store) => void;
   // 编辑器事件
@@ -251,10 +248,7 @@ export default function View(props: IViewProps) {
         borderColor: '#686868',
         highlightColor: 'rgba(0, 102, 255, 0.5)',
       });
-      editor.ruler = ruler;
-      if (editor.themeUpdateKey === 'dark') {
-        ruler.changeTheme('dark2');
-      }
+      store.ruler = ruler;
     }
 
     // 监听容器变化

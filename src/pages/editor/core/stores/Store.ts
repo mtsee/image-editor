@@ -5,6 +5,7 @@ import { bindSelf } from '../tools/helper';
 import remove from 'lodash/remove';
 import * as utils from '../tools/utils';
 import * as helper from '../tools/helper';
+import { Ruler } from 'leafer-x-ruler';
 
 interface RecordParams {
   add: (item: RecordItem<RecordType>) => void;
@@ -22,6 +23,7 @@ export default class Store {
   public data!: BasePage;
   // 历史记录
   public record?: RecordParams;
+  public ruler: Ruler;
   // 实例
   public app!: ILeafer;
   // 控制器实例

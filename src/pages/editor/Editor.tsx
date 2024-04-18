@@ -28,6 +28,7 @@ interface IProps {
   match: { params: { appid: string } };
 }
 
+const OPTION_WIDTH = 300;
 function Editor(props: IProps) {
   const appid = props.match.params.appid;
 
@@ -36,7 +37,7 @@ function Editor(props: IProps) {
   const SIDEBAR_WIDTH = 60;
   const [layout, setLayout] = useState({
     sourcesWidth: 310,
-    optionsWidth: 260,
+    optionsWidth: OPTION_WIDTH,
     timelineHeight: 300,
   });
   const [show, setShow] = useState({ sources: true, options: true });
@@ -74,7 +75,7 @@ function Editor(props: IProps) {
   const optionsBarDrag = useCallback((e: any) => {
     setNoAnimate(true);
     const { sourcesWidth, optionsWidth } = layout;
-    const interval = [260, window.innerWidth - sourcesWidth - 600];
+    const interval = [OPTION_WIDTH, window.innerWidth - sourcesWidth - 600];
     $(document)
       .on('mousemove.ievent.optionsBar', (em: any) => {
         const ex = em.pageX - e.pageX;
