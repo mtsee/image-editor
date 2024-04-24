@@ -4,7 +4,6 @@ import { observer } from 'mobx-react';
 import OptionsInner from './OptionsInner';
 import { editor } from '@stores/editor';
 // import { Empty } from '@douyinfe/semi-ui';
-import { Background } from './components';
 // import { IllustrationNoContent, IllustrationNoContentDark } from '@douyinfe/semi-illustrations';
 import PageOption from './PageOption';
 
@@ -13,13 +12,6 @@ export interface IProps {}
 function Options(props: IProps) {
   editor.selectedElementIds;
   const elements = editor.getElementDataByIds([...editor.selectedElementIds]) || [];
-  if (editor.optionPanelCustom === 'background') {
-    return (
-      <div className={styles.optionbody}>
-        <Background />
-      </div>
-    );
-  }
 
   console.log('selectedElementIds', editor.selectedElementIds);
 

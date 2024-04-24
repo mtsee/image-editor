@@ -144,7 +144,7 @@ export default class Store {
     g.x = group.x;
     g.y = group.y;
     g.rotation = group.rotation;
-    this.data.layers.push(g);
+    this.data.layers.unshift(g);
 
     // 更新视图
     this.updateView();

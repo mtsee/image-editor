@@ -10,7 +10,7 @@ import {
   AiImg,
   FlipXY,
   Shadow,
-  Blur,
+  SvgColors,
   Radius,
   Border,
 } from '../components';
@@ -34,6 +34,7 @@ function ImageOptions(props: IProps) {
         <div className={'scroll scrollBox'}>
           <AiImg />
           <FlipXY />
+          <SvgColors />
           <Opacity />
           {/* <Blur /> */}
           <Shadow />

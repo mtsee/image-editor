@@ -24,7 +24,7 @@
 
 - 技术文档：<a href="./doc/技术文档.md" target="_blank">技术文档</a>
 - 插件开发文档：<a href="./doc/插件开发文档.md" target="_blank">插件开发文档</a>
-- 插件开发文档：<a href="./doc/SDK使用文档.md" target="_blank">SDK 使用文档</a>
+- SDK文档：<a href="./doc/SDK使用文档.md" target="_blank">SDK 使用文档</a>
 - Leaferjs: <a href="https://www.leaferjs.com" target="_blank">Leaferjs</a>
 - TypeScript: <a href="https://devblogs.microsoft.com/typescript/" target="_blank">TypeScript</a>
 - React: <a href="https://react.dev/" target="_blank">React</a>

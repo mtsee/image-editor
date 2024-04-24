@@ -66,6 +66,13 @@ function ContextMenu(props: IProps) {
       case 'moveBottom':
         editor.moveBottomElement(ids);
         break;
+      case 'clearCopyTempData':
+        {
+          editor.copyTempData = null;
+          (window as any).clipboardData = null;
+          Toast.info('清理成功');
+        }
+        break;
       //etc...
     }
   };
@@ -119,6 +126,10 @@ function ContextMenu(props: IProps) {
       id: 'moveBottom',
       name: '移到底层',
       extra: 'Ctrl + Shift + [',
+    },
+    {
+      id: 'clearCopyTempData',
+      name: '清理剪切板',
     },
   ];
 

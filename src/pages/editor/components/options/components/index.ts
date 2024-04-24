@@ -10,7 +10,6 @@ import Colour from './colour';
 import TextContent from './text-content';
 import TextStyle from './text-style';
 import Strength from './strength';
-import Background from './background';
 import Animation from './animation';
 import AiImg from './ai-img';
 import FlipXY from './flipxy';
@@ -18,6 +17,7 @@ import Shadow from './shadow';
 import Blur from './blur';
 import Radius from './radius';
 import Border from './border';
+import SvgColors from './svg-colors';
 
 export {
   Border,
@@ -27,7 +27,6 @@ export {
   FlipXY,
   AiImg,
   Animation,
-  Background,
   Align,
   Group,
   Opacity,
@@ -39,5 +38,6 @@ export {
   Size,
   Item,
   Colour,
+  SvgColors,
   Strength,
 };

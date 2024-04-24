@@ -19,6 +19,58 @@ export function setURL(url: string, resourceHost: string) {
 }
 
 /**
+ * 通过URL获取文件后缀
+ * @param filePath
+ * @returns
+ */
+export function getFileExtension(filePath: string) {
+  // 使用split分割文件路径，并获取最后一部分
+  const fileName = filePath.split('/').pop();
+  // 使用split再次分割文件名，并获取最后一部分作为后缀名
+  const extension = fileName.split('.').pop();
+  // 返回后缀名
+  return extension.split('?')[0];
+}
+
+export function replaceSveColor(svgString: string, newColor: string | string[]) {
+  const parser = new DOMParser();
+  const svg = parser.parseFromString(svgString, 'image/svg+xml').querySelector('svg');
+
+  // Get all path elements
+  const elements = svg.querySelectorAll('[fill], [stroke]');
+  // Replace fill and stroke color
+  console.log('elements>>', elements);
+  let index = 0;
+  elements.forEach(element => {
+    const fill = element.getAttribute('fill');
+    const stroke = element.getAttribute('stroke');
+    console.log('stroke', { stroke, fill });
+    if (typeof newColor === 'string') {
+      if (fill && fill !== 'none') {
+        element.setAttribute('fill', newColor || '#000000');
+      }
+      if (stroke && stroke !== 'none') {
+        element.setAttribute('stroke', newColor || '#000000');
+      }
+      index++;
+    } else {
+      if (fill && fill !== 'none') {
+        element.setAttribute('fill', newColor[index] || '#000000');
+        index++;
+      }
+      if (stroke && stroke !== 'none') {
+        element.setAttribute('stroke', newColor[index] || '#000000');
+        index++;
+      }
+    }
+  });
+
+  // Serialize XML
+  const serializer = new XMLSerializer();
+  return serializer.serializeToString(svg);
+}
+
+/**
  * 随机
  * @param randomLength
  * @returns

@@ -6,6 +6,7 @@ import Text from './text';
 import More from './more';
 import Template from './template';
 import Layers from './layers';
+import Background from './background';
 // import styles from './sources.module.less';
 
 export interface IProps {}
@@ -16,6 +17,7 @@ function Sources(props: IProps) {
       <Template show={editor.sourceType === 'template'} />
       <My show={editor.sourceType === 'my'} />
       <Image show={editor.sourceType === 'image'} />
+      <Background show={editor.sourceType === 'background'} />
       <Text show={editor.sourceType === 'text'} />
       <Layers show={['layers', 'pages', 'projects'].includes(editor.sourceType)} />
       <More show={editor.sourceType === 'more'} />

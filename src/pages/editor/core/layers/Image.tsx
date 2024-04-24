@@ -1,12 +1,15 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { Leafer, Box, Image, Rect } from 'leafer-ui';
 import { LayerProps } from '../types/helper';
 import { ImageLayer } from '../types/data';
 import useLayerBaseStyle from '../hooks/useLayerBaseStyle';
 import type { IImagePaint } from '@leafer-ui/interface';
+import { getFileExtension } from '../tools/utils';
+import { utils } from '../tools';
 
 export default function ImageComp(props: LayerProps) {
   const layer = props.layer as ImageLayer;
+  const svgstr = useRef('');
   const [imgBox, imgUI] = useMemo<[Box, Image]>(() => {
     const box = new Box({
       editable: props.isChild ? false : true,
@@ -49,12 +52,52 @@ export default function ImageComp(props: LayerProps) {
   // 公共use
   useLayerBaseStyle(layer, imgBox as any, props.store, props.zIndex);
 
-  useEffect(() => {
-    const fill = imgUI.fill as IImagePaint;
-    const url = props.store.setURL(layer.url);
-    if (url !== fill.url) {
-      fill.url = url;
+  const replaceColor = (txt: string) => {
+    // 替换颜色
+    if (layer.svgColorType === 'one') {
+      txt = utils.replaceSveColor(txt, layer.svgColors[0] || '#000000');
+    } else {
+      txt = utils.replaceSveColor(txt, layer.svgColors);
     }
+    return 'data:image/svg+xml,' + encodeURIComponent(txt);
+  };
+
+  // 如果是svg，需要解析数据结构
+  const svgHTML = async (url: string) => {
+    const ext = getFileExtension(url);
+    if (svgstr.current) {
+      return replaceColor(svgstr.current);
+    }
+    if (ext === 'svg') {
+      return await fetch(url)
+        .then(async response => {
+          if (response.ok) {
+            const txt = await response.text();
+            svgstr.current = txt;
+            console.log('首次加载svg', txt);
+            return replaceColor(txt);
+          }
+          throw new Error('Network response was not ok.');
+        })
+        .catch(error => {
+          console.error('There has been a problem with your fetch operation:', error);
+        });
+    } else {
+      return url;
+    }
+  };
+
+  useEffect(() => {
+    const url = props.store.setURL(layer.url);
+    svgHTML(url).then(u => {
+      (imgUI.fill as IImagePaint) = {
+        url: u || '',
+        type: 'image',
+        mode: 'clip',
+        scale: { x: scaleX, y: scaleY },
+        offset: { x: -x * scaleX, y: -y * scaleX },
+      };
+    });
 
     const { x, y, width, height } = layer.cropSize || {
       x: 0,
@@ -64,13 +107,7 @@ export default function ImageComp(props: LayerProps) {
     };
     const scaleX = layer.width / width;
     const scaleY = layer.height / height;
-    (imgUI.fill as IImagePaint) = {
-      url: url,
-      type: 'image',
-      mode: 'clip',
-      scale: { x: scaleX, y: scaleY },
-      offset: { x: -x * scaleX, y: -y * scaleX },
-    };
+
     imgUI.width = layer.width;
     imgUI.height = layer.height;
     imgUI.x = layer.width / 2;
@@ -94,7 +131,17 @@ export default function ImageComp(props: LayerProps) {
 
     //圆角
     imgUI.cornerRadius = layer.cornerRadius ? [...layer.cornerRadius] : undefined;
-  }, [layer.width, layer.height, layer.flipx, layer.flipy, layer.cornerRadius, layer.url, layer.cropSize]);
+  }, [
+    layer.width,
+    layer.height,
+    layer.flipx,
+    layer.flipy,
+    layer.cornerRadius,
+    layer.url,
+    layer.cropSize,
+    layer.svgColorType,
+    layer.svgColors,
+  ]);
 
   useEffect(() => {
     props.store.controlScaleFuns[layer.id] = () => {
@@ -112,13 +159,15 @@ export default function ImageComp(props: LayerProps) {
       };
       const scaleX = layer.width / width;
       const scaleY = layer.height / height;
-      (imgUI.fill as IImagePaint) = {
-        url: props.store.setURL(layer.url),
-        type: 'image',
-        mode: 'clip',
-        scale: { x: scaleX, y: scaleY },
-        offset: { x: -x * scaleX, y: -y * scaleY },
-      };
+      svgHTML(props.store.setURL(layer.url)).then(u => {
+        (imgUI.fill as IImagePaint) = {
+          url: u || '',
+          type: 'image',
+          mode: 'clip',
+          scale: { x: scaleX, y: scaleY },
+          offset: { x: -x * scaleX, y: -y * scaleX },
+        };
+      });
     };
     return () => {
       delete props.store.controlScaleFuns[layer.id];

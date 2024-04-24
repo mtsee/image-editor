@@ -70,7 +70,7 @@
     "@rollup/plugin-commonjs": "^25.0.3",
     "@types/gif.js": "^0.2.5",
     "@types/jquery": "^3.5.18",
-    "@types/lodash": "^4.14.197",
+    "@types/lodash": "^4.17.0",
     "@types/pubsub-js": "^1.8.4",
     "@types/react": "^18.2.15",
     "@types/react-beautiful-dnd": "^13.1.8",

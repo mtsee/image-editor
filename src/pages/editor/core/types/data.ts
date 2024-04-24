@@ -96,6 +96,8 @@ export interface ImageLayer extends BaseLayer {
   flipx: boolean;
   flipy: boolean;
   cropSize?: { x: number; y: number; width: number; height: number }; // 裁剪
+  svgColors?: string[]; // svg颜色值
+  svgColorType?: 'one' | 'more'; // 单色，多色
   url: string; // 图片链接
   cornerRadius: [number, number, number, number]; // 圆角
 }

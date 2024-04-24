@@ -61,7 +61,11 @@ class Server extends BasicService {
 
   // 表单上传
   formUpdate = formdata => {
-    return this.post(`/api/v1/common/upload/form`, formdata);
+    let forms = new FormData();
+    formdata.files.forEach((d, i) => {
+      forms.append(`files[${i}]`, d);
+    });
+    return this.post(`/api/v1/common/upload/form`, forms);
   };
 }
 

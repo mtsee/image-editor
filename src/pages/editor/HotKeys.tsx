@@ -1,4 +1,4 @@
-import { Toast } from '@douyinfe/semi-ui';
+import { Toast, Notification } from '@douyinfe/semi-ui';
 import { editor } from '@stores/editor';
 import { util } from '@utils/index';
 import { pubsub } from '@utils/pubsub';
@@ -6,6 +6,8 @@ import { observer } from 'mobx-react';
 import React, { useEffect, useRef } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 import type { HotkeysEvent } from 'react-hotkeys-hook/src/types';
+import { server } from '@pages/editor/components/sources/my/server';
+import { addImageItem } from './components/sources/addItem';
 
 export interface IProps {}
 
@@ -18,7 +20,71 @@ function HotKeys(props: IProps) {
       mouseXY.current.y = e.pageY;
     };
     document.addEventListener('mousemove', onMove);
+
+    const pasteFuntion = async event => {
+      event.stopPropagation();
+      if (editor.copyTempData) {
+        console.log('粘贴元素');
+        // if (!editor.copyTempData) {
+        //   Toast.error('请先使用 Ctrl + C 进行复制');
+        //   return;
+        // }
+        const elems = editor.cloneElements(editor.copyTempData);
+        editor.pageData.layers.unshift(...elems);
+        editor.updateCanvas();
+        editor.setSelectedElementIds(elems.map(d => d.id));
+        editor.store.emitControl(elems.map(d => d.id));
+      } else {
+        const clipdata = event.clipboardData || (window as any).clipboardData;
+        const item = clipdata.items[0];
+        console.log('clipdata', clipdata, item.getAsFile());
+        // 只取剪切板中最新的
+        if (item && item.kind == 'file' && item.type.match(/^image\//i)) {
+          const tid = Toast.info('文件上传中...');
+          // 文件上传
+          const [res, err] = await server.formUpdate({
+            files: [item.getAsFile()],
+            filename: +new Date() + '.png',
+            file_type: 'image', // file-普通文件 image-图片文件 audio-音频文件 video-视频文件
+            app_id: editor.appid,
+          });
+          Toast.close(tid);
+          console.log('res----------->', res);
+
+          // // 保存到素材库
+          // const [item, err] = await server.createUserMaterial({
+          //   app_id: editor.appid,
+          //   name: name,
+          //   urls: { url, thumb },
+          //   attrs,
+          // });
+
+          const _img = await util.imgLazy(res.url);
+          const imgLayer = await addImageItem({
+            urls: { url: res.storage_path },
+            attrs: {
+              naturalWidth: _img.naturalWidth,
+              naturalHeight: _img.naturalHeight,
+            },
+          });
+          editor.setSelectedElementIds([imgLayer.id]);
+          editor.store.emitControl([imgLayer.id]);
+
+          Notification.open({
+            title: '文件上传成功！',
+            content: '支持SVG,JPEG,PNG,GIF的图片格式',
+            duration: 3,
+            position: 'bottomRight',
+          });
+          return;
+        }
+      }
+    };
+
+    window.addEventListener('paste', pasteFuntion);
+
     return () => {
+      window.removeEventListener('paste', pasteFuntion);
       document.removeEventListener('mousemove', onMove);
     };
   }, []);
@@ -52,8 +118,11 @@ function HotKeys(props: IProps) {
       'backspace', // 删除选中元素
     ],
     (event: KeyboardEvent, handler: HotkeysEvent) => {
-      console.log('快捷键处理--->', handler, handler.keys);
-      event.preventDefault();
+      console.log('快捷键处理--->', event, handler, handler.keys);
+
+      if (handler.ctrl && handler.keys.join('') !== 'v') {
+        event.preventDefault();
+      }
 
       if (handler.ctrl && handler.shift) {
         // ctrl + shift + *
@@ -111,18 +180,7 @@ function HotKeys(props: IProps) {
             editor.cutElement();
             break;
           case 'v':
-            {
-              console.log('粘贴元素');
-              if (!editor.copyTempData) {
-                Toast.error('请先使用 Ctrl + C 进行复制');
-                return;
-              }
-              const elems = editor.cloneElements(editor.copyTempData);
-              editor.pageData.layers.unshift(...elems);
-              editor.updateCanvas();
-              editor.setSelectedElementIds(elems.map(d => d.id));
-              editor.store.emitControl(elems.map(d => d.id));
-            }
+            // 上面
             break;
           case 's':
             console.log('手动保存项目');

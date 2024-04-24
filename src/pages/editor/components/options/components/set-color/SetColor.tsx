@@ -1,7 +1,7 @@
 import styles from './styles.module.less';
 import { Popover, Input, Slider, InputNumber, Toast } from '@douyinfe/semi-ui';
 import type { IPaint } from '@leafer-ui/interface';
-import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { CheckSmall, MoreTwo } from '@icon-park/react';
 import { RgbaColorPicker } from 'react-colorful';
@@ -17,6 +17,7 @@ export interface IProps {
   list?: boolean;
   style?: Record<string, any>;
   color: IPaint;
+  children?: JSX.Element;
   onChange: (val: IPaint) => void;
 }
 
@@ -62,7 +63,7 @@ export default function SetColor(props: IProps) {
   ]);
 
   if (!props.list) {
-    console.log('colorxxxxxxxxxxx', color);
+    // console.log('colorxxxxxxxxxxx', color);
     let bg = '';
     if (color.type === 'solid') {
       bg = color.color as string;
@@ -88,7 +89,13 @@ export default function SetColor(props: IProps) {
           />
         }
       >
-        <span style={{ background: bg, ...(props.style || {}) }} className={styles.color}></span>
+        {props.children ? (
+          React.Children.map(props.children, child => {
+            return React.cloneElement(child, { style: { background: bg } });
+          })
+        ) : (
+          <span style={{ background: bg, ...(props.style || {}) }} className={styles.color}></span>
+        )}
       </Popover>
     );
   }
@@ -141,7 +148,7 @@ interface IPropsColorModal {
   onChange: (c: IPaint) => void;
 }
 
-function ColorModal(props: IPropsColorModal) {
+export function ColorModal(props: IPropsColorModal) {
   const propsColor = props.color as any;
   const isgradual = ['linear', 'radial', 'angular'].includes(propsColor.type);
   let initColor = '#000000';
