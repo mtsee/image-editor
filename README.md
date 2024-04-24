@@ -24,7 +24,7 @@
 
 - 技术文档：<a href="./doc/技术文档.md" target="_blank">技术文档</a>
 - 插件开发文档：<a href="./doc/插件开发文档.md" target="_blank">插件开发文档</a>
-- SDK文档：<a href="./doc/SDK使用文档.md" target="_blank">SDK 使用文档</a>
+- SDK 文档：<a href="./doc/SDK使用文档.md" target="_blank">SDK 使用文档</a>
 - Leaferjs: <a href="https://www.leaferjs.com" target="_blank">Leaferjs</a>
 - TypeScript: <a href="https://devblogs.microsoft.com/typescript/" target="_blank">TypeScript</a>
 - React: <a href="https://react.dev/" target="_blank">React</a>
@@ -50,7 +50,7 @@ yarn build
 
 微信技术交流群：
 
-<img src="https://cdn.h5ds.com/wxq.jpg?t=1" width="200"/>
+<img src="https://cdn.h5ds.com/wxq.jpg?t=2" width="200"/>
 
 # 我们的产品矩阵
 
@@ -130,7 +130,7 @@ Tips: 🕙 筹划中 🔲 筹备中 🚧 进行中 ✅ 已完成
   - 🕙 路径文字
 - 🚧 图片元素
   - 🔲 LUT 滤镜
-  - 🚧 SVG 颜色自定义
+  - ✅ SVG 颜色自定义
   - ✅ 图片裁剪
   - 🔲 遮罩（容器）
   - 🔲 蒙版（橡皮擦）
@@ -142,8 +142,8 @@ Tips: 🕙 筹划中 🔲 筹备中 🚧 进行中 ✅ 已完成
   - ✅ 阴影设置
   - ✅ 透明度设置
 - 🕙 元素动画（进入，强调，离开）
-- 🔲 二维码元素
-- 🔲 条形码元素
+- ✅ 二维码元素
+- ✅ 条形码元素
 - 🔲 画笔自由绘制元素
 - 🔲 形状元素
   - 🔲 线条
@@ -158,8 +158,8 @@ Tips: 🕙 筹划中 🔲 筹备中 🚧 进行中 ✅ 已完成
   - 🔲 PDF 下载
   - 🔲 PNG 图层分层下载（ZIP）
 - 🔲 预览
-- 🔲 SDK 封装
-- 🔲 插件开发 API
+- ✅ SDK 封装
+- ✅ 插件开发 API
 - ✅ AI 抠图
 - 🔲 AI 人像打光
 - 🔲 AI 擦除水印
