@@ -2,7 +2,7 @@
 
 无界云图是<a href="https://www.h5ds.com" target="_blank">四川爱趣五科技</a>推出的一款开源的图片设计工具，使用
 了`React Hooks`，`Typescript`，`Vite`，`Leaferjs`等主流的技术开发，开箱即用，如果想直接使用，请访问我们的在线版
-本<a href="https://image.h5ds.com" target="_blank">无界云图</a>。
+<a href="https://image.h5ds.com" target="_blank">无界云图</a>。
 
 # 是否可商用？
 
@@ -30,6 +30,11 @@
 - React: <a href="https://react.dev/" target="_blank">React</a>
 - Mobx: <a href="https://cn.mobx.js.org/" target="_blank">Mobx</a>
 - Semi Design: <a href="https://semi.design/zh-CN/" target="_blank">Semi Design</a>
+
+- 文章：<a href="./doc/白嫖AI文生图.md" target="_blank">白嫖 AI 文生图</a>
+- 文章：<a href="./doc/集成iconfont.md" target="_blank">集成 iconfont</a>
+- 文章：<a href="./doc/一款高颜值、可扩展、免费开源的国产在线图片编辑器 .md" target="_blank">一款高颜值、可扩展、免费开
+  源的国产在线图片编辑器 </a>
 
 # 安装使用
 
