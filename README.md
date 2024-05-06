@@ -55,7 +55,7 @@ yarn build
 
 微信技术交流群：
 
-<img src="https://cdn.h5ds.com/wxq.jpg?t=3" width="200"/>
+<img src="https://cdn.h5ds.com/wxq.jpg?t=4" width="200"/>
 
 # 我们的产品矩阵
 
