@@ -21,11 +21,11 @@ function RecordManager(props: IProps) {
 
   useEffect(() => {
     manager.current = new UndoRedoManager({
-      limit: 30, // 设置最大记录30次，默认是50次
+      limit: 50, // 设置最大记录30次，默认是50次
     });
 
     const add = (item: RecordItem<RecordType>) => {
-      console.log('Record数据--------------->', item, utils.toJS(store.data));
+      // console.log('Record数据--------------->', item, utils.toJS(store.data));
       manager.current.add({
         id: utils.createID(),
         type: 'global',
@@ -41,7 +41,6 @@ function RecordManager(props: IProps) {
 
     // 恢复数据
     const restore = (item: RecordItem<RecordType>, type: 'undo' | 'redo'): boolean => {
-      console.log('item>>>', item);
       if (!item) {
         console.warn('已经恢复到初始位置');
         return false;
@@ -76,7 +75,7 @@ function RecordManager(props: IProps) {
     return () => {
       manager.current.destroy();
     };
-  }, [store.data]);
+  }, []);
 
   return null;
 }

@@ -1,0 +1,65 @@
+.iconfont {
+  .search {
+    display: flex;
+    margin: 20px 20px 0 20px;
+    justify-content: space-between;
+  }
+  .btn {
+    width: 70px;
+    display: block;
+    text-align: center;
+    background-color: var(--theme-main);
+    color: #fff;
+    line-height: 30px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .input {
+    width: calc(100% - 80px);
+  }
+
+  .tips {
+    margin: 20px;
+    h3 {
+      margin-bottom: 20px;
+    }
+    p {
+      line-height: 30px;
+      font-size: 14px;
+    }
+  }
+}
+
+.tabs {
+  height: 100%;
+  :global {
+    .semi-tabs-bar {
+      height: 61px;
+      display: flex;
+      justify-content: center;
+      border-bottom: var(--theme-border);
+    }
+    .semi-tabs-tab-line.semi-tabs-tab {
+      color: var(--theme-text-default);
+      &:hover {
+        color: var(--theme-text-default);
+      }
+    }
+    .semi-tabs-tab-line.semi-tabs-tab-active {
+      color: var(--theme-text);
+      &:hover {
+        color: var(--theme-text-default);
+      }
+    }
+    .semi-tabs-content {
+      height: calc(100% - 60px);
+    }
+    .semi-tabs-pane {
+      height: 100%;
+      & > div {
+        height: 100%;
+      }
+    }
+  }
+}

@@ -8,6 +8,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import type { HotkeysEvent } from 'react-hotkeys-hook/src/types';
 import { server } from '@pages/editor/components/sources/my/server';
 import { addImageItem } from './components/sources/addItem';
+import { user } from '@stores/user';
 
 export interface IProps {}
 
@@ -35,21 +36,34 @@ function HotKeys(props: IProps) {
         editor.setSelectedElementIds(elems.map(d => d.id));
         editor.store.emitControl(elems.map(d => d.id));
       } else {
+        // 如果没有登录，需要先登录
+        if (!user.info) {
+          // pubsub.publish('showLoginModal');
+          Toast.error('请先登录');
+          return;
+        }
+
         const clipdata = event.clipboardData || (window as any).clipboardData;
+        // console.log('clipdata', clipdata, item.getAsFile());
         const item = clipdata.items[0];
-        console.log('clipdata', clipdata, item.getAsFile());
+        const svgString = clipdata.getData('text/plain');
+        let svgFile = null;
+        if (svgString && util.isSVGString(svgString)) {
+          const svgBlob = new Blob([svgString], { type: 'image/svg+xml' });
+          svgFile = new File([svgBlob], 'image.svg', { type: 'image/svg+xml' });
+        }
+
         // 只取剪切板中最新的
-        if (item && item.kind == 'file' && item.type.match(/^image\//i)) {
+        if ((item && item.kind == 'file' && item.type.match(/^image\//i)) || svgFile) {
           const tid = Toast.info('文件上传中...');
           // 文件上传
           const [res, err] = await server.formUpdate({
-            files: [item.getAsFile()],
-            filename: +new Date() + '.png',
+            files: svgFile ? [svgFile] : [item.getAsFile()],
+            filename: `${util.createID()}.${svgFile ? 'svg' : 'png'}`,
             file_type: 'image', // file-普通文件 image-图片文件 audio-音频文件 video-视频文件
             app_id: editor.appid,
           });
           Toast.close(tid);
-          console.log('res----------->', res);
 
           // // 保存到素材库
           // const [item, err] = await server.createUserMaterial({
@@ -276,11 +290,13 @@ function HotKeys(props: IProps) {
             break;
           case 'delete':
           case 'backspace':
-            console.log('删除');
-            editor.store.deleteLayers([...editor.selectedElementIds]);
-            editor.updateCanvas();
-            editor.store.emitControl([]);
-            editor.record();
+            {
+              console.log('删除', [...editor.selectedElementIds]);
+              editor.store.deleteLayers([...editor.selectedElementIds]);
+              editor.updateCanvas();
+              editor.store.emitControl([]);
+              editor.record();
+            }
             break;
         }
       }

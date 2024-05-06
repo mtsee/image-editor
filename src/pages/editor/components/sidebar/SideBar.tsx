@@ -2,7 +2,7 @@ import '@icon-park/react/styles/index.css';
 import styles from './sidebar.module.less';
 import logo1 from '@images/logo1.png';
 import logo2 from '@images/logo2.png';
-import { UploadOne, PictureOne, KeyboardOne, Mosaic, MoreTwo, Text, Page } from '@icon-park/react';
+import { UploadOne, PictureOne, Stickers, Mosaic, MoreTwo, Text, Page } from '@icon-park/react';
 import classNames from 'classnames';
 import { observer } from 'mobx-react';
 import { editor } from '@stores/editor';
@@ -49,6 +49,11 @@ function SideBar(props: ISideBarProps) {
               icon: <Mosaic theme="outline" size="24" fill={fill} />,
               type: 'background',
               name: '背景',
+            },
+            {
+              icon: <Stickers theme="outline" size="24" fill={fill} />,
+              type: 'svg',
+              name: '贴纸',
             },
             {
               icon: <MoreTwo theme="outline" size="24" fill={fill} />,

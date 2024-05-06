@@ -7,6 +7,7 @@ import 'react-contexify/dist/ReactContexify.css';
 import styles from './styles.module.less';
 import { util } from '@utils/index';
 import { Toast } from '@douyinfe/semi-ui';
+import { GroupLayer } from '@pages/editor/core/types/data';
 
 export interface IProps {}
 
@@ -29,7 +30,6 @@ function ContextMenu(props: IProps) {
   }, []);
 
   const handleItemClick = ({ id, event, props }: any) => {
-    console.log('xxxprops', props);
     const ids = props.layers.map(d => d.id) || [];
     switch (id) {
       case 'cut':
@@ -63,6 +63,23 @@ function ContextMenu(props: IProps) {
       case 'moveTop':
         editor.moveTopElement(ids);
         break;
+      case 'ungroup':
+        {
+          const elementData = editor.getElementData();
+          const ids = editor.store.unGroupData(elementData.id);
+          editor.setSelectedElementIds([ids[0]]);
+          editor.store.emitControl([ids[0]]);
+          editor.updateCanvasKey = util.createID();
+        }
+        break;
+      case 'group':
+        {
+          // 数据合并
+          const g = editor.store.groupData([...editor.selectedElementIds]);
+          editor.setSelectedElementIds([g.id]);
+          editor.store.emitControl([g.id]);
+        }
+        break;
       case 'moveBottom':
         editor.moveBottomElement(ids);
         break;
@@ -77,7 +94,52 @@ function ContextMenu(props: IProps) {
     }
   };
 
+  let group = null;
+  let ungroup = null;
+  if (editor.selectedElementIds.length > 1) {
+    group = {
+      id: 'group',
+      name: '组合',
+      extra: 'Ctrl + G',
+    };
+  } else {
+    const layer = editor.getElementData() as GroupLayer;
+    if (layer && layer.type === 'group') {
+      ungroup = {
+        id: 'ungroup',
+        name: '解除组合',
+        extra: 'Ctrl + Shift + G',
+      };
+    }
+  }
+
   const menus = [
+    {
+      id: 'up1',
+      name: '上移一层',
+      extra: 'Ctrl + ]',
+    },
+    {
+      id: 'down1',
+      name: '下移一层',
+      extra: 'Ctrl + [',
+    },
+    {
+      id: 'moveTop',
+      name: '移到顶层',
+      extra: 'Ctrl + Shift + ]',
+    },
+    {
+      id: 'moveBottom',
+      name: '移到底层',
+      extra: 'Ctrl + Shift + [',
+    },
+    {
+      id: 'sp1',
+      name: 'Separator',
+    },
+    group,
+    ungroup,
     {
       id: 'cut',
       name: '剪切',
@@ -104,34 +166,10 @@ function ContextMenu(props: IProps) {
       extra: '',
     },
     {
-      id: 'sp1',
-      name: 'Separator',
-    },
-    {
-      id: 'up1',
-      name: '上移一层',
-      extra: 'Ctrl + ]',
-    },
-    {
-      id: 'down1',
-      name: '下移一层',
-      extra: 'Ctrl + [',
-    },
-    {
-      id: 'moveTop',
-      name: '移到顶层',
-      extra: 'Ctrl + Shift + ]',
-    },
-    {
-      id: 'moveBottom',
-      name: '移到底层',
-      extra: 'Ctrl + Shift + [',
-    },
-    {
       id: 'clearCopyTempData',
       name: '清理剪切板',
     },
-  ];
+  ].filter(d => d);
 
   editor.themeUpdateKey;
   return (

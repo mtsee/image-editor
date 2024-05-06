@@ -39,27 +39,19 @@ export default function useLayerBaseStyle(layer: BaseLayer, box: IUI, store: Sto
 
   // 阴影
   useEffect(() => {
-    if (layer.type === 'text') {
-      const textElem = box.children[0] as IText;
-      if (layer.shadow) {
-        if (layer.shadow.visible) {
-          (textElem.shadow as IShadowEffect) = { ...layer.shadow };
-        } else {
-          textElem.shadow = undefined;
-        }
+    if (layer.shadow && layer.shadow.visible) {
+      if (['image', 'text'].includes(layer.type)) {
+        const imgUI = box.children[0];
+        imgUI.shadow = { ...layer.shadow };
+      } else {
+        (box.shadow as IShadowEffect) = { ...layer.shadow };
       }
     } else {
-      if (layer.shadow) {
-        if (layer.shadow.visible) {
-          if (layer.type === 'image') {
-            const imgUI = box.children[0];
-            imgUI.shadow = { ...layer.shadow };
-          } else {
-            (box.shadow as IShadowEffect) = { ...layer.shadow };
-          }
-        } else {
-          box.shadow = undefined;
-        }
+      if (['image', 'text'].includes(layer.type)) {
+        const imgUI = box.children[0];
+        imgUI.shadow = undefined;
+      } else {
+        box.shadow = undefined;
       }
     }
   }, [

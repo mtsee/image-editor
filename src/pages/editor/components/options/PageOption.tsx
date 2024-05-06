@@ -49,6 +49,7 @@ function PageOption(props: IProps) {
                   if (editor.data.pages.length > 1) {
                     remove(editor.data.pages, d => d.id === editor.selectPageId);
                     editor.selectPageId = editor.data.pages[0].id;
+                    editor.data.selectPageId = editor.data.pages[0].id;
                     editor.updateCanvasKey = util.createID();
                   } else {
                     Toast.error('至少保留一个页面');

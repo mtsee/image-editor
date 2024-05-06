@@ -72,9 +72,9 @@ export default function Title(props: IProps) {
           }}
         >
           {layer._hide ? (
-            <PreviewClose size={16} color="var(--theme-icon)" />
+            <PreviewClose size={16} fill="var(--theme-icon)" />
           ) : (
-            <PreviewOpen size={16} color="var(--theme-icon)" />
+            <PreviewOpen size={16} fill="var(--theme-icon)" />
           )}
         </a>
         <a
@@ -86,7 +86,7 @@ export default function Title(props: IProps) {
             editor.updateOption();
           }}
         >
-          {layer._lock ? <Lock size={16} color="var(--theme-icon)" /> : <Unlock size={16} color="var(--theme-icon)" />}
+          {layer._lock ? <Lock size={16} fill="#df1414" /> : <Unlock size={16} fill="var(--theme-icon)" />}
         </a>
       </span>
     </div>

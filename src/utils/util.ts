@@ -10,6 +10,16 @@ export function createID(n?: number): string {
   return nanoid(n ? n : 16);
 }
 
+// 判断是否是svg格式
+export function isSVGString(str: string): boolean {
+  // 使用 DOMParser 尝试解析字符串
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(str, 'image/svg+xml');
+
+  // 检查解析后的文档是否包含有效的 SVG 元素
+  return doc.documentElement.tagName.toLowerCase() === 'svg';
+}
+
 export function base642URL(base64: string) {
   return URL.createObjectURL(dataURLtoBlob(base64));
 }

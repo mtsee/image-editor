@@ -74,13 +74,13 @@ export default function View(props: IViewProps) {
           },
         },
       },
-      // tree: {
-      //   usePartRender: true,
-      // },
-      // sky: {
-      //   type: 'draw',
-      //   usePartRender: true,
-      // },
+      tree: {
+        usePartRender: true,
+      },
+      sky: {
+        type: 'draw',
+        usePartRender: true,
+      },
     });
     // console.log('app', app);
     //@ts-ignore
@@ -135,11 +135,12 @@ export default function View(props: IViewProps) {
         // 数据同步
         list.forEach(box => {
           const layer = layers.find(d => d.id === box.id) as any;
-          layer.width = box.width;
-          layer.height = box.height;
           if (layer.type === 'text') {
             layer.x = box.x;
             layer.y = box.y;
+          } else {
+            layer.width = box.width;
+            layer.height = box.height;
           }
           const func = store.controlScaleFuns[layer.id];
           if (func) {

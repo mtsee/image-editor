@@ -20,6 +20,9 @@ export default function ImageComp(props: LayerProps) {
       rotation: layer.rotation,
       opacity: layer.opacity,
       fill: 'rgba(0,0,0,0.0)',
+      hoverStyle: {
+        stroke: '#000',
+      },
       // overflow: 'hide',
     });
     box.id = layer.id;
@@ -53,11 +56,19 @@ export default function ImageComp(props: LayerProps) {
   useLayerBaseStyle(layer, imgBox as any, props.store, props.zIndex);
 
   const replaceColor = (txt: string) => {
+    if (!layer.svgColorType) {
+      layer.svgColorType = 'more';
+    }
+    console.log('layer.svgColorType', layer.svgColorType, layer.svgColors);
     // 替换颜色
     if (layer.svgColorType === 'one') {
-      txt = utils.replaceSveColor(txt, layer.svgColors[0] || '#000000');
+      if (layer.svgColors && layer.svgColors[0]) {
+        txt = utils.replaceSveColor(txt, layer.svgColors[0] || '#000000');
+      }
     } else {
-      txt = utils.replaceSveColor(txt, layer.svgColors);
+      if (layer.svgColors && layer.svgColors.length) {
+        txt = utils.replaceSveColor(txt, layer.svgColors);
+      }
     }
     return 'data:image/svg+xml,' + encodeURIComponent(txt);
   };

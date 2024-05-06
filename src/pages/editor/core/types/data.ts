@@ -105,6 +105,8 @@ export interface ImageLayer extends BaseLayer {
 // 文本
 export interface TextLayer extends BaseLayer {
   type: 'text';
+  width: number;
+  height: number;
   // 文字样式
   fontFamilyURL: string; // 字体路径
   text: string; // 内容

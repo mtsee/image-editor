@@ -21,7 +21,10 @@ export default function SvgColors(props: IProps) {
     return null;
   }
   if (!elementData.svgColors) {
-    elementData.svgColors = ['#000000'];
+    elementData.svgColors = [];
+  }
+  if (!elementData.svgColorType) {
+    elementData.svgColorType = 'more';
   }
 
   return (

@@ -50,7 +50,7 @@ yarn build
 
 微信技术交流群：
 
-<img src="https://cdn.h5ds.com/wxq.jpg?t=2" width="200"/>
+<img src="https://cdn.h5ds.com/wxq.jpg?t=3" width="200"/>
 
 # 我们的产品矩阵
 
@@ -60,19 +60,17 @@ yarn build
 - <a href="https://h5.h5ds.com" target="_blank">H5 网页制作工具</a>
 - <a href="https://sharezm.com" target="_blank">希尔桌面（网盘）</a>
 
-## 更新日志
+# 更新日志
 
 [CHANGELOG](./CHANGELOG.md)
 
-## Star History
+# Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=mtsee/image-editor&type=Date)](https://star-history.com/#mtsee/image-editor&Date)
 
 # 功能/计划
 
 Tips: 🕙 筹划中 🔲 筹备中 🚧 进行中 ✅ 已完成
-
-### 编辑器
 
 - 🚧 素材管理
   - ✅[系统]图片素材

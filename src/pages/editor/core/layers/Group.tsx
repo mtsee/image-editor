@@ -12,6 +12,7 @@ export default function GroupComp(props: LayerProps) {
   const groupBox = useMemo(() => {
     const group = new Group({
       editable: props.isChild ? false : true,
+      hitChildren: false,
       x: layer.x,
       y: layer.y,
       rotation: layer.rotation,

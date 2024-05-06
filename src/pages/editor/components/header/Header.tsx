@@ -12,11 +12,12 @@ import { pubsub } from '@utils/pubsub';
 import { util } from '@utils/index';
 import { server } from '../../server';
 // import { IconSpin } from '@douyinfe/semi-icons';
-// import { IconSun, IconMoon } from '@douyinfe/semi-icons';
+import { IconSun, IconMoon } from '@douyinfe/semi-icons';
 import RecordTest from './RecordTest';
 import { config } from '@config/index';
 import { ViewData } from '@pages/editor/core/types/data';
 import AboutUs from './AboutUs';
+import { theme, ThemeName } from '@theme';
 
 export interface IProps {}
 
@@ -47,10 +48,10 @@ function Header(props: IProps) {
     }
   };
 
-  const saveApp = async (callback?: () => void) => {
+  const saveApp = async (callback?: () => void, noToast?: boolean) => {
     console.log(JSON.stringify(editor.data));
 
-    if (!user.info) {
+    if (!user.info && !noToast) {
       // pubsub.publish('showLoginModal');
       Toast.error('请先登录');
       return;
@@ -129,7 +130,7 @@ function Header(props: IProps) {
 
     // 每隔30秒自动保存
     const timer = setInterval(() => {
-      saveApp();
+      saveApp(undefined, true);
     }, 1000 * 30);
 
     return () => {
@@ -216,6 +217,29 @@ function Header(props: IProps) {
           >
             开通VIP
           </Button> */}
+          <a
+            className={styles.git}
+            onClick={() => {
+              if (theme.getTheme() === 'dark') {
+                theme.setTheme(ThemeName.LIGHT);
+                if (editor.ruler) {
+                  editor.ruler.changeTheme('light');
+                }
+              } else {
+                theme.setTheme(ThemeName.DARK);
+                if (editor.ruler) {
+                  editor.ruler.changeTheme('dark2');
+                }
+              }
+              editor.themeUpdateKey = theme.getTheme();
+            }}
+          >
+            {theme.getTheme() === 'light' ? (
+              <IconMoon style={{ color: 'var(--theme-icon)' }} size="extra-large" />
+            ) : (
+              <IconSun style={{ color: 'var(--theme-icon)' }} size="extra-large" />
+            )}
+          </a>
           <Export />
           {user.info ? (
             <Popover content={<User />} position="bottomRight" trigger="click">

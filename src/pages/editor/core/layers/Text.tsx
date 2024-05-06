@@ -5,6 +5,7 @@ import { TextLayer } from '../types/data';
 import useLayerBaseStyle from '../hooks/useLayerBaseStyle';
 import { IText, IUnitData } from '@leafer-ui/interface';
 import { loadFont } from '../tools/utils';
+import { utils } from '../tools';
 // import { util } from '@utils/index';
 
 export default function TextComp(props: LayerProps) {
@@ -36,6 +37,7 @@ export default function TextComp(props: LayerProps) {
           strokeCap: 'square',
           // padding: [10, 20],
           textAlign: 'center',
+          strokeJoin: 'round',
           verticalAlign: 'top',
           ...layer.textStyle,
           fontFamily: '',
@@ -92,7 +94,7 @@ export default function TextComp(props: LayerProps) {
       const textElem = textBox.children[0] as IText;
       textElem.fontFamily = 'Arial, sans-serif';
       loadFont(layer.textStyle.fontFamily, layer.fontFamilyURL).then(() => {
-        console.log('加载成功');
+        // console.log('加载成功');
         textElem.fontFamily = layer.textStyle.fontFamily;
         resizeText();
       });
@@ -139,10 +141,9 @@ export default function TextComp(props: LayerProps) {
       const textElem = textBox.children[0] as IText;
       // 解决对齐后文字定位问题
       textElem.x = 0;
-
       const fontScale = textElem.width / tempData.width;
-      const fontSize = ~~Math.max(tempData.fontSize * fontScale, 1);
-      const strokeWidth = ~~Math.max(tempData.strokeWidth * fontScale, 1);
+      const fontSize = utils.toIntNum(Math.max(tempData.fontSize * fontScale, 1), 2);
+      const strokeWidth = utils.toIntNum(Math.max(tempData.strokeWidth * fontScale, 1), 2);
       // 修改样式
       textElem.fontSize = fontSize;
       textElem.strokeWidth = strokeWidth;

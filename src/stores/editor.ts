@@ -314,6 +314,9 @@ class Editor {
 
   @action
   getElementDataByIds = (ids: string[]) => {
+    if (!this.store) {
+      return [];
+    }
     const arr = this.store.getLayerByIds(ids);
     return arr;
   };

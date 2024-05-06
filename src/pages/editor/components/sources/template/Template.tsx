@@ -50,6 +50,7 @@ export default function Template(props: IProps) {
               editor.selectedElementIds = [];
               setTimeout(() => {
                 editor.store.autoViewSize();
+                editor.record();
               }, 10);
             });
           } catch (e) {

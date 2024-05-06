@@ -79,6 +79,17 @@ export function randomID(randomLength = 8): string {
   return Number(Math.random().toString().substr(3, randomLength) + Date.now()).toString(36);
 }
 
+/**
+ * 只保留小数点后第n位，直接去掉，不做四舍五入
+ * @param val
+ * @param n
+ * @returns
+ */
+export function toIntNum(val: number, n: number) {
+  const num = Math.pow(10, n);
+  return ~~(val * num) / num;
+}
+
 export function toJS(obj: Record<string, any> | any[]) {
   try {
     return JSON.parse(JSON.stringify(obj));
