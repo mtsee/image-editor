@@ -6,6 +6,7 @@ import useLayerBaseStyle from '../hooks/useLayerBaseStyle';
 
 import ImageLayer from './Image';
 import TextLayer from './Text';
+import exLayers from '@plugins/index';
 
 export default function GroupComp(props: LayerProps) {
   const layer = props.layer as GroupLayer;
@@ -113,6 +114,26 @@ export default function GroupComp(props: LayerProps) {
                 env={env}
               />
             );
+          default: {
+            const exLayer = exLayers.find(d => d.config.pid === layer.type);
+            if (exLayer) {
+              const ELayer = exLayer.Layer as any;
+              return (
+                <ELayer
+                  key={layer.id}
+                  hide={layer._hide}
+                  lock={layer._lock}
+                  dirty={layer._dirty}
+                  isChild={true}
+                  parent={groupBox}
+                  zIndex={99999 - i}
+                  layer={layer}
+                  store={store}
+                  env={env}
+                />
+              );
+            }
+          }
         }
         return null;
       })}
