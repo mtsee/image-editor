@@ -1,25 +1,18 @@
 import { util } from '@utils/index';
-import AudioSVGWaveform from './audioWaveFormSvgPath';
 
 /**
  * 上传之前预处理数据
  */
 export async function getUploadBeforeData(
   url: string,
-  type?: 'audio' | 'image' | 'video' | 'image/svg' | 'image/gif' | null,
+  type?: 'image' | 'image/svg' | 'image/gif' | null,
   uploadBase64?: (params: {
     content: string;
     name: string;
-    file_type?: 'image' | 'video' | 'audio' | 'json' | 'txt' | 'font';
+    file_type?: 'image' | 'json' | 'txt' | 'font';
   }) => Promise<any>, // 上传base64的接口
 ) {
   switch (type) {
-    case 'audio': {
-      // 获取音波数据
-      // 获取duration
-      const media = (await util.mediaLazy(url, undefined, 'audio')) as HTMLVideoElement;
-      return { duration: media.duration };
-    }
     case 'image':
     case 'image/svg': {
       // 获取封面图
@@ -53,81 +46,9 @@ export async function getUploadBeforeData(
       }
       return { ...info, thumb };
     }
-    case 'video': {
-      // 获取封面图
-      const video = (await util.mediaLazy(url, 1, 'video')) as HTMLVideoElement;
-      const thumbBase64 = await util.drawVideoFrame(video, 200, 3);
-      const { duration, videoHeight, videoWidth } = video;
-      let thumb = '';
-      // 文件上传
-      if (uploadBase64) {
-        thumb = await uploadBase64({
-          content: thumbBase64,
-          name: util.createID() + '.png',
-          file_type: 'image',
-        }).then(res => {
-          return res[0]?.storage_path;
-        });
-      }
-      return {
-        thumb,
-        duration,
-        videoWidth,
-        videoHeight,
-      };
-    }
     default:
       throw new Error('未知文件类型' + url);
   }
-}
-
-/**
- * 获取帧图
- * @param url
- * @param aspectRatio
- * @returns
- */
-export async function decoderVideoDrawFrameImage(url: string, aspectRatio: number) {
-  return new Promise(resolve => {
-    decoderVideo(
-      { url, workerPath: '/assets/worker/decode.worker.js', aspectRatio, frameHeight: 50 },
-      'decodeFrameImage',
-      data => {
-        if (data.type === 'drawFrameImageSuccess') {
-          // data.workerInstance.terminate();
-          resolve(data.data);
-        }
-      },
-    );
-  });
-}
-
-/**
- * 解码视频，获取数据
- * @param options workerPath: 'decode.worker.js'
- * @param callback
- * // workerInstance.terminate(); 销毁
- */
-export function decoderVideo(
-  options: { url: string; workerPath: string; aspectRatio: number; frameHeight?: number },
-  workerType: 'initDecodeVideo' | 'decodeFrameByTime' | 'decodeFrameImage' | 'destroy',
-  callback: (n: any) => void,
-) {
-  const canvas = document.createElement('canvas');
-  const offscreen = (canvas as any).transferControlToOffscreen();
-  const demuxDecodeWorker = new Worker(options.workerPath);
-  demuxDecodeWorker.postMessage(
-    {
-      type: workerType,
-      canvas: offscreen,
-      options: { ...options },
-    },
-    [offscreen],
-  );
-  demuxDecodeWorker.onmessage = function (event: any) {
-    callback({ data: event.data.data, type: event.data.type, workerInstance: demuxDecodeWorker });
-    // canvas.remove();
-  };
 }
 
 /**
