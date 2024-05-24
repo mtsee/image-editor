@@ -1,0 +1,8 @@
+{
+  "name": "image-editor-core",
+  "version": "1.0.1",
+  "author": "mantou <676015863@qq.com>",
+  "main": "coresdk.es.js",
+  "license": "MIT",
+  "repository": "https://image.h5ds.com"
+}
